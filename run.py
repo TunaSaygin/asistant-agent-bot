@@ -10,7 +10,7 @@ import wandb
 import logging
 import transformers
 import random
-
+import json
 from model import (
     FewShotPromptedLLM,
     SimplePromptedLLM,
@@ -85,6 +85,10 @@ if __name__ == "__main__":
         model_name = 'Alpaca-LoRA'
     else:
         model_name = 'GPT3.5'
+    oai_key = ""
+    file_path = "key.json"
+    with open(file_path, 'r') as file:
+        oai_key = json.load(file)["api_key"]
     if args.from_wandb_id is None:
         wandb.init(project='llmbot', entity='hlava', config=config, settings=wandb.Settings(start_method="fork"))
         wandb.run.name = f'{args.run_name}-{args.dataset}-{model_name}-examples-{args.num_examples}-ctx-{args.context_size}'
@@ -93,12 +97,12 @@ if __name__ == "__main__":
 
         if args.model_name.startswith("text-"):
             model_factory = ZeroShotOpenAILLM if args.use_zero_shot else FewShotOpenAILLM
-            model = model_factory(args.model_name)
-            domain_model = ZeroShotOpenAILLM(args.model_name)
+            model = model_factory(args.model_name,oai_key)
+            domain_model = ZeroShotOpenAILLM(args.model_name,oai_key)
         elif args.model_name.startswith("gpt-"):
             model_factory = ZeroShotOpenAIChatLLM if args.use_zero_shot else FewShotOpenAIChatLLM
-            model = model_factory(args.model_name)
-            domain_model = ZeroShotOpenAIChatLLM(args.model_name)
+            model = model_factory(args.model_name,oai_key)
+            domain_model = ZeroShotOpenAIChatLLM(args.model_name,oai_key)
         elif any([n in args.model_name for n in ['opt', 'NeoXT']]):
             tokenizer = AutoTokenizer.from_pretrained(args.model_name, cache_dir=args.cache_dir)
             model_w = AutoModelForCausalLM.from_pretrained(args.model_name,

@@ -2,8 +2,6 @@ from typing import Any, Dict
 import os
 # import openai outdated
 from openai import OpenAI
-#Just use %env OPENAI_API_KEY= 'Your Key' 
-oai_key = os.environ.get('OPENAI_API_KEY', None)
 
 from prompts import FewShotPrompt, SimpleTemplatePrompt
 
@@ -49,10 +47,9 @@ class FewShotPromptedLLM(SimplePromptedLLM):
 
 
 class FewShotOpenAILLM(FewShotPromptedLLM):
-    def __init__(self, model_name):
+    def __init__(self, model_name,oai_key):
         super().__init__(None, None)
         self.model_name = model_name
-        oai_key = os.environ.get('OPENAI_API_KEY', None)
         self.client = OpenAI(
             api_key=oai_key
         )
@@ -75,14 +72,13 @@ class FewShotOpenAIChatLLM(FewShotOpenAILLM):
             ],
             temperature=0,
             )
-        return completion.choices[0].message["content"]
+        return completion.choices[0].message.content
 
 
 class ZeroShotOpenAILLM(SimplePromptedLLM):
-    def __init__(self, model_name):
+    def __init__(self, model_name,oai_key):
         super().__init__(None, None)
         self.model_name = model_name
-        oai_key = os.environ.get('OPENAI_API_KEY', None)
         self.client = OpenAI(
             api_key=oai_key
         )
@@ -108,7 +104,7 @@ class ZeroShotOpenAIChatLLM(ZeroShotOpenAILLM):
                 ],
                 temperature=0,
                 )
-            return completion.choices[0].message["content"]
+            return completion.choices[0].message.content
         except:
             return ""
 
