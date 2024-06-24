@@ -34,7 +34,8 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 transformers.set_seed(42)
-
+YELLOW = "\033[33m"
+RESET = "\033[0m"
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--cache_dir", type=str, default="/home/hudecek/hudecek/hf_cache")
@@ -225,7 +226,7 @@ if __name__ == "__main__":
                 available_domains = list(MW_FEW_SHOT_DOMAIN_DEFINITIONS.keys())
             else:
                 available_domains = list(SGD_FEW_SHOT_DOMAIN_DEFINITIONS.keys())
-            print(f"PREDICTED DOMAIN: {selected_domain}")
+            print(f"{YELLOW}PREDICTED DOMAIN: {selected_domain}{RESET}")
             if selected_domain not in available_domains:
                 selected_domain = random.choice(available_domains)
             if args.dataset == 'multiwoz':
@@ -254,6 +255,7 @@ if __name__ == "__main__":
                                                                input_keys=["context"],
                                                                output_keys=["state"],
                                                                corrupt_state=True)
+            print(f"{YELLOW}negative:{negative_state_examples}{RESET}")
             response_examples = example_formatter.format(retrieved_examples[:num_examples],
                                                          input_keys=["context", "full_state", "database"],
                                                          output_keys=["response"],
@@ -276,11 +278,13 @@ if __name__ == "__main__":
                         kwargs["negative_examples"] = [] # negative_state_examples
                     state, filled_state_prompt = model(state_prompt, predict=True, **kwargs)
                     if n < 2:
-                        print("Filled prompt:", filled_state_prompt)
-                except:
+                        print(f"{YELLOW}Filled prompt:", filled_state_prompt,f"{RESET}")
+                except Exception as e:
                     state = "{}"
+                    print(f"Failed line 282: {e.with_traceback()}")
 
                 parsed_state = parse_state(state, default_domain=selected_domain)
+                print(f"{YELLOW}parsed_state:{parsed_state}{RESET}")
                 if selected_domain not in parsed_state:
                     parsed_state[selected_domain] = {}
                 if not isinstance(parsed_state[selected_domain], dict):
@@ -289,11 +293,13 @@ if __name__ == "__main__":
                 for k in keys_to_remove:
                     del parsed_state[selected_domain][k]
                 try:
+                    print(f"{YELLOW}parsed_state:{parsed_state}{RESET}")
                     for domain, ds in parsed_state.items():
                         for slot, value in ds.items():
                             pass
-                except:
+                except Exception as e:
                     parsed_state = {selected_domain: {}}
+                    print(f"Failed Parsing: {e.with_traceback()}")
                 
                 final_state = {}
                 for domain, ds in parsed_state.items():
@@ -309,15 +315,15 @@ if __name__ == "__main__":
                             if value not in ['dontcare', 'none', '?', ''] and len(value) > 0:
                                 total_state[domain][slot] = value
             
-            print('-' * 100)
-            print(f"Question: {question}", flush=True)
-            print(f"Selected domain: {selected_domain}", flush=True)
-            logger.info(f"Raw State: {state}")
-            print(f"Raw State: {state}", flush=True)
-            logger.info(f"Parsed State: {final_state}")
-            print(f"Parsed State: {final_state}", flush=True)
-            logger.info(f"Total State: {total_state}")
-            print(f"Total State: {total_state}", flush=True)
+            print(f"{YELLOW}",'-' * 100,f"{RESET}")
+            print(f"{YELLOW}Question: {question}{RESET}", flush=True)
+            print(f"{YELLOW}Selected domain: {selected_domain}{RESET}", flush=True)
+            logger.info(f"{YELLOW}Raw State: {state}{RESET}")
+            print(f"{YELLOW}Raw State: {state}{RESET}", flush=True)
+            logger.info(f"{YELLOW}Parsed State: {final_state}{RESET}")
+            print(f"{YELLOW}Parsed State: {final_state}{RESET}", flush=True)
+            logger.info(f"{YELLOW}Total State: {total_state}{RESET}")
+            print(f"{YELLOW}Total State: {total_state}{RESET}", flush=True)
 
             if args.dataset == 'multiwoz':
                 database_results = {domain: len(database.query(domain=domain, constraints=ds))
@@ -325,7 +331,7 @@ if __name__ == "__main__":
             else:
                 database_results = turn['metadata']['database']
             logger.info(f"Database Results: {database_results}")
-            print(f"Database Results: {database_results}", flush=True)
+            print(f"{YELLOW}Database Results: {database_results}{RESET}", flush=True)
             
             try:
                 kwargs = {
@@ -341,17 +347,18 @@ if __name__ == "__main__":
                 # response, filled_prompt = "IDK", "-"
                 response, filled_prompt = model(response_prompt, predict=True, **kwargs)
                 if n < 5:
-                    print("Filled response prompt:", filled_prompt)
-            except:
+                    print("{YELLOW}Filled response prompt:", filled_prompt,"{RESET}")
+            except Exception as e:
                 response = ''
+                print(f"failed before delexicalise{e.with_traceback()}")
 
             if args.dataset == 'multiwoz':
                 response = delexicalise(response, delex_dic)
                 response = delexicaliseReferenceNumber(response)
             
-            logger.info(f"Response: {response}")
-            print(f"Response: {response}", flush=True)
-            print(f"Gold Response: {gold_response}", flush=True)
+            logger.info(f"{YELLOW}Response: {response}")
+            print(f"{YELLOW}Response: {response}{RESET}", flush=True)
+            print(f"{YELLOW}Gold Response: {gold_response}{RESET}", flush=True)
 
             history.append("Customer: " + question)
             report_table.add_data(f"{dialogue_id}-{tn}", " ".join(history), state, json.dumps(final_state), response, selected_domain, gt_domain)
