@@ -235,4 +235,29 @@ class AssistantAgent:
         return response
             
 
-AssistantAgent()
+if __name__ == "__main__":
+    system = AssistantAgent(
+        cache_dir=".",
+        model_name="gpt-3.5-turbo-0613",
+        faiss_db="multiwoz-context-db.vec",
+        num_examples=2,
+        dials_total=100,
+        database_path="multiwoz_database",
+        dataset="multiwoz",
+        context_size=3,
+        ontology="ontology.json",
+        output="results",
+        run_name="",
+        use_gt_state=False,
+        use_gt_domain=False,
+        use_zero_shot=True,
+        verbose=True,
+        goal_data=None,
+        debug=True,# Placeholder, adjust based on actual usage
+    )
+    response = system.run("Hi, I want to book a train from Cambridge to London")
+    print(response)
+    response = system.run("I want to travel on Tuesday")
+    print(response)
+    response = system.run("What is the travel time?")
+    print(response)
