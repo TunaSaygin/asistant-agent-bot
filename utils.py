@@ -25,13 +25,15 @@ def parse_state(state: str, default_domain: str = None) -> Dict[str, str]:
         return dct
 
     state = str(state)
-    slotvals = re.findall("('[a-z]+': ?('(([a-z]| |[A-Z]|:|[0-9])+')|[A-Za-z0-9:]+))", state)
+    # slotvals = re.findall("('[a-z]+': ?('(([a-z]| |[A-Z]|:|[0-9])+')|[A-Za-z0-9:]+))", state)
     # slotvals = re.findall("([a-z]+:('(([a-z]| |[A-Z]|:|[0-9])+')|[A-Za-z0-9:]+))", state)
-    out_state = {}
-    for sv in slotvals:
-        sv = sv[0].strip("'\"").split(':')
-        out_state[sv[0].strip("'\"")] = ":".join(sv[1:]).strip("'\" ")
-    return sanitize(out_state)
+    slotvals = re.findall(r"(['\"]?[a-z]+['\"]?): ?['\"]?([^'\"]*)['\"]?", state)
+    print(slotvals)
+    # out_state = {}
+    # for sv in slotvals:
+    #     sv = sv[0].strip("'\"").split(':')
+    #     out_state[sv[0].strip("'\"")] = ":".join(sv[1:]).strip("'\" ")
+    # return sanitize(out_state)
 
     if not state.startswith("{"):
         state = "{" + state

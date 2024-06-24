@@ -1,7 +1,9 @@
 from typing import Any, Dict
 import os
-import openai
-openai.api_key = os.environ.get('OPENAI_API_KEY', None)
+# import openai outdated
+from openai import OpenAI
+#Just use %env OPENAI_API_KEY= 'Your Key' 
+oai_key = os.environ.get('OPENAI_API_KEY', None)
 
 from prompts import FewShotPrompt, SimpleTemplatePrompt
 
@@ -50,9 +52,13 @@ class FewShotOpenAILLM(FewShotPromptedLLM):
     def __init__(self, model_name):
         super().__init__(None, None)
         self.model_name = model_name
+        oai_key = os.environ.get('OPENAI_API_KEY', None)
+        self.client = OpenAI(
+            api_key=oai_key
+        )
 
     def _predict(self, text, **kwargs):
-        completion = openai.Completion.create(
+        completion = self.client.chat.completions.create(
             model=self.model_name,
             prompt=text,
             temperature=0,
@@ -62,7 +68,7 @@ class FewShotOpenAILLM(FewShotPromptedLLM):
 
 class FewShotOpenAIChatLLM(FewShotOpenAILLM):
     def _predict(self, text, **kwargs):
-        completion = openai.ChatCompletion.create(
+        completion = self.client.chat.completions.create(
             model=self.model_name,
             messages=[
                 {"role": "user", "content": text}
@@ -76,9 +82,13 @@ class ZeroShotOpenAILLM(SimplePromptedLLM):
     def __init__(self, model_name):
         super().__init__(None, None)
         self.model_name = model_name
+        oai_key = os.environ.get('OPENAI_API_KEY', None)
+        self.client = OpenAI(
+            api_key=oai_key
+        )
 
     def _predict(self, text, **kwargs):
-        completion = openai.Completion.create(
+        completion = self.client.chat.completions.create(
             model=self.model_name,
             prompt=text,
             temperature=0,
@@ -90,7 +100,7 @@ class ZeroShotOpenAIChatLLM(ZeroShotOpenAILLM):
     def _predict(self, text, **kwargs):
         try:
 
-            completion = openai.ChatCompletion.create(
+            completion = self.client.chat.completions.create(
                 model=self.model_name,
                 messages=[
                  #  {"role": "system", "content": prefix},
