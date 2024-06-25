@@ -24,8 +24,12 @@ def parse_state(state: str, default_domain: str = None) -> Dict[str, Dict[str, s
                 dct[key] = str(dct[key])
         return dct
 
+    # Replace newline characters with spaces
+    state = state.replace('\n', ' ')
     state = str(state)
-    slotvals = re.findall(r"(['\"]?[a-z]+['\"]?): ?['\"]?([^'\"]*)['\"]?", state)
+    
+    # Find key-value pairs using regex
+    slotvals = re.findall(r"([a-zA-Z]+): ?([^ ]*)", state)
     print(slotvals)
     
     out_state = {}
