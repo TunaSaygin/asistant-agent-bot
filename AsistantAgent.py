@@ -68,9 +68,9 @@ class AssistantAgent:
                                                         cache_dir=self.cache_dir,
                                                         device_map="auto",
                                                         load_in_8bit=True)
-            model_factory = SimplePromptedLLM if self.use_zero_shot else FewShotPromptedLLM
-            model = self.model_factory(model_w, tokenizer, type="causal")
-            domain_model = SimplePromptedLLM(model_w, tokenizer, type="causal")
+            self.model_factory = SimplePromptedLLM if self.use_zero_shot else FewShotPromptedLLM
+            self.model = self.model_factory(model_w, tokenizer, type="causal")
+            self.domain_model = SimplePromptedLLM(model_w, tokenizer, type="causal")
         elif 'alpaca' in self.model_name:
             self.model_factory = ZeroShotAlpaca if self.use_zero_shot else FewShotAlpaca
             self.model = self.model_factory(model_name="Alpaca-LoRA")
