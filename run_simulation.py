@@ -2,6 +2,9 @@ import argparse
 import tqdm
 from loaders import load_mwoz
 import Dialog.utils
+from UserAgent import UserAgent
+import AsistantAgent
+import json
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--database_path", type=str, default="multiwoz_database")
@@ -12,17 +15,14 @@ if __name__ == "__main__":
     parser.add_argument("--dials_total", type=int, default=5)
     args = parser.parse_args()
     total = args.dials_total
-    last_dial_id = None
-    data_gen = \
-                load_mwoz(args.database_path, args.context_size, split=args.split, total=total, shuffle=False, only_single_domain=args.single_domain, restrict_domains=args.restrict_domains.split(",") if args.restrict_domains is not None else None)
-
+    data_gen = Dialog.utils.DialogueLoader().load_dialogue(args.dials_total)
+    file_path = "key.json"
+    with open(file_path, 'r') as file:
+        oai_key = json.load(file)["api_key"]
     tn = 0
     progress_bar = tqdm.tqdm(total=total)
-    for it, turn in enumerate(data_gen):
-        if last_dial_id != turn['dialogue_id']:
-            last_dial_id = turn['dialogue_id']
-            n += 1
-            progress_bar.update(1)
-            tn = 0
-            if n > total:
-                break
+    for it, dialog in enumerate(data_gen):
+        user_agent = UserAgent(dialog.woz_goals,oai_key)
+        user_response = user_agent.generate_utterance()
+        print("User_response:",user_response)
+        
