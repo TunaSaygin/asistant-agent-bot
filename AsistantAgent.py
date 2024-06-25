@@ -37,53 +37,53 @@ class AssistantAgent:
         self.verbose = verbose
         self.goal_data = goal_data
         self.debug = debug
-        if 'tk-instruct-3b' in self.config.model_name:
+        if 'tk-instruct-3b' in self.model_name:
             model_name = 'tk-3B'
-        elif 'tk-instruct-11b' in self.config.model_name:
+        elif 'tk-instruct-11b' in self.model_name:
             model_name = 'tk-11B'
-        elif 'opt-iml-1.3b' in self.config.model_name:
+        elif 'opt-iml-1.3b' in self.model_name:
             model_name = 'opt-iml-1.3b'
-        elif 'opt-iml-30b' in self.config.model_name:
+        elif 'opt-iml-30b' in self.model_name:
             model_name = 'opt-iml-30b'
-        elif 'NeoXT' in self.config.model_name:
+        elif 'NeoXT' in self.model_name:
             model_name = 'GPT-NeoXT-20b'
-        elif 'gpt-3.5' in self.config.model_name:
+        elif 'gpt-3.5' in self.model_name:
             model_name = 'ChatGPT'
-        elif self.config.model_name == 'alpaca':
+        elif self.model_name == 'alpaca':
             model_name = 'Alpaca-LoRA'
         else:
             model_name = 'GPT3.5'
-        if self.config.model_name.startswith("text-"):
-            self.model_factory = ZeroShotOpenAILLM if self.config.use_zero_shot else FewShotOpenAILLM
-            self.model = model_factory(self.config.model_name,oai_key)
-            self.domain_model = ZeroShotOpenAILLM(self.config.model_name,oai_key)
-        elif self.config.model_name.startswith("gpt-"):
-            self.model_factory = ZeroShotOpenAIChatLLM if self.config.use_zero_shot else FewShotOpenAIChatLLM
-            self.model = model_factory(self.config.model_name,oai_key)
-            self.domain_model = ZeroShotOpenAIChatLLM(self.config.model_name,oai_key)
-        elif any([n in self.config.model_name for n in ['opt', 'NeoXT']]):
-            tokenizer = AutoTokenizer.from_pretrained(self.config.model_name, cache_dir=self.config.cache_dir)
-            model_w = AutoModelForCausalLM.from_pretrained(self.config.model_name,
+        if self.model_name.startswith("text-"):
+            self.model_factory = ZeroShotOpenAILLM if self.use_zero_shot else FewShotOpenAILLM
+            self.model = self.model_factory(self.model_name,oai_key)
+            self.domain_model = ZeroShotOpenAILLM(self.model_name,oai_key)
+        elif self.model_name.startswith("gpt-"):
+            self.model_factory = ZeroShotOpenAIChatLLM if self.use_zero_shot else FewShotOpenAIChatLLM
+            self.model = self.model_factory(self.model_name,oai_key)
+            self.domain_model = ZeroShotOpenAIChatLLM(self.model_name,oai_key)
+        elif any([n in self.model_name for n in ['opt', 'NeoXT']]):
+            tokenizer = AutoTokenizer.from_pretrained(self.model_name, cache_dir=self.cache_dir)
+            model_w = AutoModelForCausalLM.from_pretrained(self.model_name,
                                                         low_cpu_mem_usage=True,
-                                                        cache_dir=self.config.cache_dir,
+                                                        cache_dir=self.cache_dir,
                                                         device_map="auto",
                                                         load_in_8bit=True)
-            model_factory = SimplePromptedLLM if self.config.use_zero_shot else FewShotPromptedLLM
-            model = model_factory(model_w, tokenizer, type="causal")
+            model_factory = SimplePromptedLLM if self.use_zero_shot else FewShotPromptedLLM
+            model = self.model_factory(model_w, tokenizer, type="causal")
             domain_model = SimplePromptedLLM(model_w, tokenizer, type="causal")
-        elif 'alpaca' in self.config.model_name:
-            self.model_factory = ZeroShotAlpaca if self.config.use_zero_shot else FewShotAlpaca
-            self.model = model_factory(model_name="Alpaca-LoRA")
+        elif 'alpaca' in self.model_name:
+            self.model_factory = ZeroShotAlpaca if self.use_zero_shot else FewShotAlpaca
+            self.model = self.model_factory(model_name="Alpaca-LoRA")
             self.domain_model = ZeroShotAlpaca(model_name="Alpaca-LoRA")
         else:
-            tokenizer = AutoTokenizer.from_pretrained(self.config.model_name, cache_dir=self.config.cache_dir)
-            model_w = AutoModelForSeq2SeqLM.from_pretrained(self.config.model_name,
+            tokenizer = AutoTokenizer.from_pretrained(self.model_name, cache_dir=self.cache_dir)
+            model_w = AutoModelForSeq2SeqLM.from_pretrained(self.model_name,
                                                         low_cpu_mem_usage=True,
-                                                        cache_dir=self.config.cache_dir,
+                                                        cache_dir=self.cache_dir,
                                                         device_map="auto",
                                                         load_in_8bit=True)
-            self.model_factory = SimplePromptedLLM if self.config.use_zero_shot else FewShotPromptedLLM
-            self.model = model_factory(model_w, tokenizer, type="seq2seq")
+            self.model_factory = SimplePromptedLLM if self.use_zero_shot else FewShotPromptedLLM
+            self.model = self.model_factory(model_w, tokenizer, type="seq2seq")
             self.domain_model = SimplePromptedLLM(model_w, tokenizer, type="seq2seq")
         with open(faiss_db, 'rb') as f:
             self.faiss_vs = pickle.load(f)
@@ -184,13 +184,13 @@ class AssistantAgent:
                 final_state[domain] = ds
         
         for domain, dbs in final_state.items():
-            if domain not in total_state:
-                total_state[domain] = dbs
+            if domain not in self.total_state:
+                self.total_state[domain] = dbs
             else:
                 for slot, value in dbs.items():
                     value = str(value)
                     if value not in ['dontcare', 'none', '?', ''] and len(value) > 0:
-                        total_state[domain][slot] = value
+                        self.total_state[domain][slot] = value
         
         YELLOW = "\033[33m"
         RESET = "\033[0m"
@@ -236,8 +236,12 @@ class AssistantAgent:
             
 
 if __name__ == "__main__":
+    file_path = "key.json"
+    with open(file_path, 'r') as file:
+        oai_key = json.load(file)["api_key"]
     system = AssistantAgent(
         cache_dir=".",
+        oai_key=oai_key,
         model_name="gpt-3.5-turbo-0613",
         faiss_db="multiwoz-context-db.vec",
         num_examples=2,
@@ -255,9 +259,9 @@ if __name__ == "__main__":
         goal_data=None,
         debug=True,# Placeholder, adjust based on actual usage
     )
-    response = system.run("Hi, I want to book a train from Cambridge to London")
+    response = system.gen_utterance("Hi, I want to book a train from Cambridge to London")
     print(response)
-    response = system.run("I want to travel on Tuesday")
+    response = system.gen_utterance("I want to travel on Tuesday")
     print(response)
-    response = system.run("What is the travel time?")
+    response = system.gen_utterance("What is the travel time?")
     print(response)
