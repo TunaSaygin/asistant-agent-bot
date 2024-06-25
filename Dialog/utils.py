@@ -20,7 +20,7 @@ class WozDialogue:
     
 
 class DialogueLoader:
-    def __init__(self,woz21_file = "../MWOZ/MultiWOZ_2.1/data.json") -> None:
+    def __init__(self,woz21_file = "./MWOZ/MultiWOZ_2.1/data.json") -> None:
         with open(woz21_file,"r") as f:
             self.mwoz = json.load(f)
     def load_dialogue(self,shuffle, max_dialogues=10):

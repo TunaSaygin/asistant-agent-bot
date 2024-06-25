@@ -24,6 +24,7 @@ class UserAgent():
         self.goals = [self.remove_span_tags(goal) for goal in goals]
         self.goal_cursor = 0
         self.model = OAI(oai_key=oai_key)
+        self.history = ""
     def changeGoals(self,new_goals):
         self.goals = new_goals
         self.goal_cursor = 0
