@@ -47,8 +47,9 @@ if __name__ == "__main__":
         while turn <args.max_turns_per_dial:
             user_response = user_agent.generate_utterance()
             print("User_response:",user_response)
-            dialog.add_uterance(f"Customer:",user_response)
+            dialog.add_uterance(f"Customer: {user_response}")
             system_response =system_agent.gen_utterance(user_response)
             dialog.add_uterance(f"System:",system_response)
-            print("System_response:",system_response)
+            print(f"System_response: {system_response}")
+            turn +=1
         

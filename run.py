@@ -328,9 +328,12 @@ if __name__ == "__main__":
             print(f"{YELLOW}Parsed State: {final_state}{RESET}", flush=True)
             logger.info(f"{YELLOW}Total State: {total_state}{RESET}")
             print(f"{YELLOW}Total State: {total_state}{RESET}", flush=True)
-
+            def get_ten_entry(db_result):
+                if len(db_result)>10:
+                    return db_result[:10]
+                return db_result
             if args.dataset == 'multiwoz':
-                database_results = {domain: len(database.query(domain=domain, constraints=ds))
+                database_results = {domain: get_ten_entry(database.query(domain=domain, constraints=ds))
                                     for domain, ds in total_state.items() if len(ds) > 0}
             else:
                 database_results = turn['metadata']['database']
