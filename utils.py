@@ -16,6 +16,8 @@ from loaders import load_sgd
 
 
 def parse_state(state: str, default_domain: str = None) -> Dict[str, Dict[str, str]]:
+    #parser code was not  working in Vojta Hudeek's repository. 
+    # Therefore, the following code is from TaahaKazi/utilities.py classes parse_state method
     def sanitize(dct):
         for key in dct:
             if isinstance(dct[key], dict):
@@ -24,26 +26,20 @@ def parse_state(state: str, default_domain: str = None) -> Dict[str, Dict[str, s
                 dct[key] = str(dct[key])
         return dct
 
-    # Replace newline characters with spaces
-    state = state.replace('\n', ' ')
     state = str(state)
-    
-    # Find key-value pairs using regex
-    slotvals = re.findall(r"([a-zA-Z]+): ?([^ ]*)", state)
-    print(slotvals)
-    
+    # slotvals = re.findall("('[a-z]+': ?('(([a-z]| |[A-Z]|:|[0-9])+')|[A-Za-z0-9:]+))", state)
+    slotvals = re.findall("([a-z]+:('(([a-z]| |[A-Z]|:|[0-9])+')|[A-Za-z0-9:]+))", state)
     out_state = {}
+    """
     for sv in slotvals:
-        key = sv[0].strip("'\" ")
-        value = sv[1].strip("'\" ")
-        if default_domain:
-            if default_domain not in out_state:
-                out_state[default_domain] = {}
-            out_state[default_domain][key] = value
-        else:
-            out_state[key] = value  # This assumes no nested domains without a default domain
-    
+        sv = sv[0].strip("'\"").split(':')
+        out_state[sv[0].strip("'\"")] = ":".join(sv[1:]).strip("'\" ")
     return sanitize(out_state)
+    """
+    for sv in slotvals:
+        sv = sv[0].strip("'\"").split(':')
+        out_state[sv[0].strip("'\"")] = ":".join(sv[1:]).strip("'\" ")
+    return {default_domain: sanitize(out_state)}
 
     if not state.startswith("{"):
         state = "{" + state

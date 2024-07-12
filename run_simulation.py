@@ -49,7 +49,7 @@ if __name__ == "__main__":
             print("User_response:",user_response)
             dialog.add_uterance(f"Customer: {user_response}")
             system_response =system_agent.gen_utterance(user_response)
-            dialog.add_uterance(f"System:",system_response)
+            dialog.add_uterance(f"System:{system_response}")
             print(f"System_response: {system_response}")
             turn +=1
         
