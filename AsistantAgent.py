@@ -205,7 +205,7 @@ class AssistantAgent:
             logger.info(f"{YELLOW}Total State: {self.total_state}{RESET}")
             print(f"{YELLOW}Total State: {self.total_state}{RESET}", flush=True)
         if self.dataset == 'multiwoz':
-            database_results = {domain: len(self.database.query(domain=domain, constraints=ds))
+            database_results = {domain: self.database.query(domain=domain, constraints=ds)
                                 for domain, ds in self.total_state.items() if len(ds) > 0}
         else:
             database_results = ""

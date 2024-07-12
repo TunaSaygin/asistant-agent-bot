@@ -20,8 +20,11 @@ class OAI:
 
 
 class UserAgent():
-    def __init__(self,goals,oai_key) -> None:
+    def __init__(self,goals,oai_key,dial_key) -> None:
         self.goals = [self.remove_span_tags(goal) for goal in goals]
+        self.dial_key = dial_key
+        print(f"Goals: {self.goals}")
+        print(f"Key: {self.dial_key}")
         self.goal_cursor = 0
         self.model = OAI(oai_key=oai_key)
         self.history = ""
@@ -35,11 +38,16 @@ class UserAgent():
     def resetHistory(self):
         self.history = ""
     def generate_utterance(self):
+        print("*"*15+"User"+"*"*15)
         result = "Satisfied"
         while self.history and result.startswith("Satisfied") and self.goal_cursor<len(self.goals):
+            ## goal_window initially 2
+            subgoals = self.goals[self.goal_cursor]
+            if(self.goal_cursor<len(self.goals)-1):
+                subgoals += " " +self.goals[self.goal_cursor+1]
             result = self.model.generate_prompt(
-                user_prmpt.prompt_subgoalfinder(self.goals[self.goal_cursor],self.history))
-            print(f"result.startswith('Satisfied')={result.startswith('Satisfied')} goal={self.goals[self.goal_cursor]}")
+                user_prmpt.prompt_subgoalfinder(subgoals,self.history))
+            print(f"result.startswith('Satisfied')={result.startswith('Satisfied')} goal={subgoals}")
             # if self.goal_cursor+1<len(self.goals) and self.goals[self.goal_cursor+1].startswith("If"): ## additional rules if the following rule is conditional
             #     if result.startswith("Satisfied"):
             #         self.goal_cursor +=2 #skip the if statement
@@ -49,6 +57,7 @@ class UserAgent():
             if result.startswith("Satisfied"):
                 self.goal_cursor +=1
         print(self.history)
+        print(f"Unsatisfied subgoal is: {result}")
         print("user response:")
         if self.goal_cursor == len(self.goals):
             print("Thanks")
