@@ -9,7 +9,7 @@ class Frame:
         self.instruct_message = instruct_message
         self.conv_history = conv_history
         self.verbose = None
-
+        self.dial_history = []
     def get_initial_msg(self):
         """
         This method gets the state of the frame.
@@ -42,7 +42,7 @@ class Frame:
         return
 
     def update_frame(self, response):
-        self.conv_history.append(response)
+        self.dial_history.append(response)
 
     def update_verbose_frame(self, response):
         # Add the verbose response to the verbose list

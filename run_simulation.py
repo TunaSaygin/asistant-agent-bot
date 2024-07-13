@@ -81,6 +81,7 @@ if __name__ == "__main__":
         print("--"*20)
         print("Same dialogue with Taaha's User simulation")
         print("--"*20+"\n")
+        user_model = GPT3Thought()
         while True:
             # Get user model response
             thought_response, user_response = user_model.get_response(frame)
@@ -94,7 +95,7 @@ if __name__ == "__main__":
                 break
 
             # Get client model response
-            client_response = system_agent.gen_utterance(frame.conv_history[-1]['content'])
+            client_response = system_agent.gen_utterance(frame.dial_history[-1]['content'])
             print("Thought: ", thought_response)
             print("User: ", user_response)
             print("System: ", client_response)
@@ -103,10 +104,10 @@ if __name__ == "__main__":
             frame.update_frame({"role": "tod_system", "content": client_response})
             print("\n")
             # Check if the conversation is over
-            if len(frame.conv_history) == 4:
+            if len(frame.dial_history) == 6:
                 break
 
         print("Frames over")
         # Initialize the user-agent model taaha kazi
-        user_model = GPT3Thought()
+        
         

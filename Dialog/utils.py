@@ -28,7 +28,7 @@ class DialogueLoader:
         if shuffle:
             random.shuffle(dialogues)
         for dial_no, (key, dialogue) in enumerate(dialogues):
-            if dial_no >= max_dialogues:
+            if dial_no == max_dialogues:
                 break
             print(f'Key: {key}\n Dialogue: {dialogue["log"]}\nGoals:{dialogue["goal"]["message"]}')
             ## let's also create frames
@@ -45,10 +45,10 @@ class DialogueLoader:
             # Create Frame
             current_frame = Frame(initial_msg, conv_history)
             yield dial_no, WozDialogue(dialogue["log"],key ,dialogue["goal"]["message"]), current_frame 
-
-loader = DialogueLoader()
-dialogues = loader.load_dialogue(True,1)
-for dial_no, dialogue in dialogues:
-  print(f"dial_no:{dial_no}")
-  dialogue.printWoz_Dialog()
-  break
+if __name__ == "__main__":
+    loader = DialogueLoader()
+    dialogues = loader.load_dialogue(True,1)
+    for dial_no, dialogue, frame in dialogues:
+        print(f"dial_no:{dial_no}")
+        dialogue.printWoz_Dialog()
+        break

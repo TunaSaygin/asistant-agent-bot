@@ -5,10 +5,10 @@ import regex as re
 class GPT3Thought:
     def __init__(self, example=True):
         key_lookup = json.load(open('key.json'))
-        self.model = OpenAI(api_key=key_lookup['key'])
+        self.model = OpenAI(api_key=key_lookup['api_key'])
         # code to read text from a file and store it in a variable as string
         if example:
-            self.example = str(open('model/GPT/example_thought_only_repetition.txt', 'r').read())
+            self.example = str(open('example_thought_only_repetition.txt', 'r').read())
         else:
             self.example = ""
         self.log = open('log.txt', 'w')
@@ -16,7 +16,7 @@ class GPT3Thought:
     def get_response(self, frame):
 
         # if the conversation history is empty, then we need to start the conversation
-        if len(frame.conv_history) == 0:
+        if len(frame.dial_history) == 0:
 
             initial_msg = (
                     "You are a user chatting with a chatbot. You will be given a User Goal Instruction. You have to " \
@@ -58,7 +58,7 @@ class GPT3Thought:
 
         else:
             current_conv = ""
-            for msg in frame.conv_history:
+            for msg in frame.dial_history:
                 if msg['role'] == 'user_agent':
                     msg_str = "User: " + msg['content'] + "\n"
                     current_conv = current_conv + msg_str
