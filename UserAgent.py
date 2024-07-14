@@ -30,6 +30,7 @@ class UserAgent():
         self.goal_cursor = 0
         self.model = OAI(oai_key=oai_key)
         self.history = ""
+        self.prev_goal_cursor = 0 #track if it remains same
     def changeGoals(self,new_goals):
         self.goals = new_goals
         self.goal_cursor = 0
@@ -42,11 +43,16 @@ class UserAgent():
     def generate_utterance(self):
         print("*"*15+"User"+"*"*15)
         result = "Satisfied"
+        subgoals = self.goals[self.goal_cursor if self.goal_cursor<len(self.goals) else 0]
+        if(self.goal_cursor<len(self.goals)-1):
+                subgoals += " " +self.goals[self.goal_cursor+1] # for the initial empty dialogue I needed to use redundant code
         while self.history and result.startswith("Satisfied") and self.goal_cursor<len(self.goals):
             ## goal_window initially 2
             subgoals = self.goals[self.goal_cursor]
             if(self.goal_cursor<len(self.goals)-1):
                 subgoals += " " +self.goals[self.goal_cursor+1]
+            if (self.goal_cursor == -1) and (self.goal_cursor<len(self.goals)-2): #this occurs when the goal is not satisfied twice
+                subgoals += " " + self.goals[self.goal_cursor+2]
             result = self.model.generate_prompt(
                 user_prmpt.prompt_subgoalfinder(subgoals,self.history))
             print(f"result.startswith('Satisfied')={result.startswith('Satisfied')} goal={subgoals}")
@@ -58,7 +64,8 @@ class UserAgent():
             #         self.goal_cursor +=1
             if result.startswith("Satisfied"):
                 self.goal_cursor +=1
-        print(self.history)
+        # print(self.history) it was for debugging purposes TODO will be deleted
+        self.prev_goal_cursor = self.goal_cursor if self.goal_cursor != self.prev_goal_cursor else -1 #flagging it for increasing the size of the subset of goals
         print(f"Unsatisfied subgoal is: {result if self.history else '''Unsatisfied. Dialogue hasn't started yet'''}")
         print("user response:")
         if self.goal_cursor == len(self.goals):
@@ -66,7 +73,7 @@ class UserAgent():
             return "Thanks"
         else:
             user_request = self.model.generate_prompt(
-                user_prmpt.prompt_requestgenerator(self.goals[self.goal_cursor],self.history,result if self.history else '''Unsatisfied. Dialogue hasn't started yet'''))
+                user_prmpt.prompt_requestgenerator(subgoals,self.history,result if self.history else '''Unsatisfied. Dialogue hasn't started yet'''))
             return user_request
     
     def remove_span_tags(self,text):
