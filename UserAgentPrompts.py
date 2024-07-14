@@ -41,6 +41,7 @@ prompt_requestgenerator = lambda goal,history,result: f"""
             
             Wrong Example:
             Goal: You are planning your trip in Cambridge. You are looking for a particular attraction. Its name is called cambridge and county folk museum
+            Reason of unsatisfaction: Dialogue hasn't started yet. 
             History: 
             Generated Utterance: Can you please recommend some popular tourist attractions in Cambridge?
             Reasoning:  Rather than looking for a particular attraction called Cambridge and County Folk Museum, it asks for general tourist attractions.
@@ -51,6 +52,17 @@ prompt_requestgenerator = lambda goal,history,result: f"""
             Generated Utterance: I am looking for an attraction.Can you provide information about the Cambridge and County Folk Museum in Cambridge?
             Reasoning: Utterance clearly conveys the intent of user which is looking for a particular attraction. It covers all of the goal by giving information about cambridge and county folk museum
 
+            Wrong Example:
+            Goal: You are looking for a train. The train should leave on Thursday and should depart from Cambridge. The train should go to Peterborough and should leave after 20:15.
+            History: 
+            Generated Utterance: Can you please help me find a train that departs from Cambridge on Thursday?
+            Reasoning: The generated utterance does not fully satisfy the goal as it only mentions the departure location and day, but omits the destination (Peterborough) and the departure time (after 20:15).
+
+            Correct Example:
+            Goal: You are looking for a train. The train should leave on Thursday and should depart from Cambridge. The train should go to Peterborough and should leave after 20:15.
+            History: 
+            Generated Utterance: Can you please help me find a train that departs from Cambridge on Thursday after 20:15 and goes to Peterborough?
+            Reasoning: The generated utterance clearly includes all aspects of the goal, mentioning the departure location (Cambridge), the day (Thursday), the departure time (after 20:15), and the destination (Peterborough).
 
             Now find the user's next utterance.
             History:{history}

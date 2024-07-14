@@ -13,6 +13,8 @@ class OAI:
             messages=[
                 {"role": "user", "content": prompt}
             ],
+            temperature=0,
+            max_tokens=100,
         )
         generated_text = response.choices[0].message.content
         print(generated_text)
@@ -57,14 +59,14 @@ class UserAgent():
             if result.startswith("Satisfied"):
                 self.goal_cursor +=1
         print(self.history)
-        print(f"Unsatisfied subgoal is: {result}")
+        print(f"Unsatisfied subgoal is: {result if self.history else '''Unsatisfied. Dialogue hasn't started yet'''}")
         print("user response:")
         if self.goal_cursor == len(self.goals):
             print("Thanks")
             return "Thanks"
         else:
             user_request = self.model.generate_prompt(
-                user_prmpt.prompt_requestgenerator(self.goals[self.goal_cursor],self.history,result))
+                user_prmpt.prompt_requestgenerator(self.goals[self.goal_cursor],self.history,result if self.history else '''Unsatisfied. Dialogue hasn't started yet'''))
             return user_request
     
     def remove_span_tags(self,text):
