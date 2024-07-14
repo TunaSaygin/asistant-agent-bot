@@ -13,7 +13,7 @@ if __name__ == "__main__":
     parser.add_argument("--single_domain", action='store_true')
     parser.add_argument("--restrict_domains", type=str)
     parser.add_argument("--dials_total", type=int, default=5)
-    parser.add_argument("--max_turns_per_dial", type=int, default=4)
+    parser.add_argument("--max_turns_per_dial", type=int, default=5)
     args = parser.parse_args()
     total = args.dials_total
     data_gen = Dialog.utils.DialogueLoader().load_dialogue(args.dials_total)
@@ -24,6 +24,8 @@ if __name__ == "__main__":
 
     
     for it, dialog,frame in data_gen:
+        if it== args.dials_total:
+            break
         turn = 0
         progress_bar.update(1)
         user_agent = UserAgent(dialog.woz_goals,oai_key, dialog.woz_key)
