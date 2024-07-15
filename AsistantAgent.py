@@ -261,3 +261,5 @@ if __name__ == "__main__":
     )
     response = system.gen_utterance("Can you please recommend any Italian restaurants in Cambridge that are not in the center?")
     print(response)
+    response = system.gen_utterance("Can you please find me a hotel with free wifi but it shouldn't be 3-star hotel?")
+    print(response)
