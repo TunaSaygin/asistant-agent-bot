@@ -65,7 +65,7 @@ class UserAgent():
             if result.startswith("Satisfied"):
                 self.goal_cursor +=1
         # print(self.history) it was for debugging purposes TODO will be deleted
-        self.prev_goal_cursor = self.goal_cursor if self.goal_cursor != self.prev_goal_cursor else -1 #flagging it for increasing the size of the subset of goals
+        self.prev_goal_cursor = self.goal_cursor if self.goal_cursor != self.prev_goal_cursor or not self.history else -1 #flagging it for increasing the size of the subset of goals
         print(f"Unsatisfied subgoal is: {result if self.history else '''Unsatisfied. Dialogue hasn't started yet'''}")
         print("user response:")
         if self.goal_cursor == len(self.goals):

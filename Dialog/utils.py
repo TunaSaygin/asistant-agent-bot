@@ -44,7 +44,7 @@ class DialogueLoader:
 
             # Create Frame
             current_frame = Frame(initial_msg, conv_history)
-            yield dial_no, WozDialogue(dialogue["log"],key ,dialogue["goal"]["message"]), current_frame 
+            yield dial_no, WozDialogue(dialogue["log"],key ,dialogue["goal"]["message"] if not key.startswith("WOZ") else [dialogue["goal"]["message"]]), current_frame 
 if __name__ == "__main__":
     loader = DialogueLoader()
     dialogues = loader.load_dialogue(True,1)

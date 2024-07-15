@@ -8,7 +8,7 @@ prompt_subgoalfinder = lambda goal,history: f"""
     User: Can you please provide me with a list of 3-star hotels located in the south? I am still looking for a place to stay.
     System: I found 2 hotels that match your request for 3-star hotels located in the south. The first one is the [bridge guest house], located at [151 hills road], with a phone number of [01223247942] and a postcode of [cb28rj]. The second one is [the lensfield hotel], located at [53-57 lensfield road], with a phone number of [01223355017] and a postcode of [cb21en]. Let me know if you need any further assistance or if you would like to book a hotel.
     Not satisfied. The system provided a list of 2 hotels that match the user's request for 3-star hotels located in the south.
-    Reasoning: System's providing a list of 2 hotels is correct step for the goal's achievement. Explanation must give what should be done to achieve the goal.
+    Reasoning: This is a wrong example because system is providing a list of 2 hotels is correct step for the goal's achievement. Explanation must give what should be done to achieve the goal.
     
     Correct Example:
     Goal: You are looking for a place to stay. The hotel should have a star of 3 and should be in the south The hotel should be in the type of hotel and should include free parking
@@ -24,6 +24,24 @@ prompt_subgoalfinder = lambda goal,history: f"""
     User: Can you please book a taxi for me? I need to depart from Saffron Brasserie and arrive at my destination by 03:30.
     System: Sure, I can help you with that. May I know your destination, please?
     Not satisfied. Explanation: The user has mentioned the destination as "Leicester train station" which is not mentioned in the goal given as "The taxi should go to leicester train station."
+    
+    Wrong Example:
+    Goal: You are looking for a restaurant. The restaurant should serve indian food and should be in the expensive price range Make sure you get area, address, and postcode
+    History:
+    User:Can you please recommend some Indian restaurants in Cambridge that are in the expensive price range?
+    System: Assistant: Sure! Here are some Indian restaurants in Cambridge that are in the expensive price range:
+    1. Curry Garden
+    - Address: 106 Regent Street City Centre
+    - Phone: 01223302330
+    - Postcode: cb21dp
+    2. The Golden Curry
+    - Address: Mill Road City Centre
+    - Phone: 01223329432
+    - Postcode: cb12az
+    Let me know if you need any further assistance!
+    Satisfied. The system provided a list of Indian restaurants in Cambridge that are in the expensive price range, along with their area, address, and postcode.
+    Reasoning: This is a bad example because the goal is unsatisfied. When the goal consist of instructions such as looking for or finding, user must ask for available options and then select one of the avaiable option to fulfill the goal 
+    
     Response format:
     If satisfied Satsified. Explanation
     If not satisfied. Not. Expalanation
