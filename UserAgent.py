@@ -31,6 +31,7 @@ class UserAgent():
         self.model = OAI(oai_key=oai_key)
         self.history = ""
         self.prev_goal_cursor = 0 #track if it remains same
+        self.extra_goal_no = 0
     def changeGoals(self,new_goals):
         self.goals = new_goals
         self.goal_cursor = 0
@@ -51,21 +52,19 @@ class UserAgent():
             subgoals = self.goals[self.goal_cursor]
             if(self.goal_cursor<len(self.goals)-1):
                 subgoals += " " +self.goals[self.goal_cursor+1]
-            if (self.goal_cursor == -1) and (self.goal_cursor<len(self.goals)-2): #this occurs when the goal is not satisfied twice
-                subgoals += " " + self.goals[self.goal_cursor+2]
+            # if (self.goal_cursor == -1) and (self.goal_cursor<len(self.goals)-2): #this occurs when the goal is not satisfied twice
+            #     subgoals += " " + self.goals[self.goal_cursor+2]
+            if self.goal_cursor == -1 and self.extra_goal_no>0:
+                for i in range(1,self.extra_goal_no+1):
+                    subgoals += " " + self.goals[i + self.extra_goal_no  + 1]
             result = self.model.generate_prompt(
                 user_prmpt.prompt_subgoalfinder(subgoals,self.history))
             print(f"result.startswith('Satisfied')={result.startswith('Satisfied')} goal={subgoals}")
-            # if self.goal_cursor+1<len(self.goals) and self.goals[self.goal_cursor+1].startswith("If"): ## additional rules if the following rule is conditional
-            #     if result.startswith("Satisfied"):
-            #         self.goal_cursor +=2 #skip the if statement
-            #     else:
-            #         result = "Satisfied" # go into the the conditional goal
-            #         self.goal_cursor +=1
             if result.startswith("Satisfied"):
                 self.goal_cursor +=1
         # print(self.history) it was for debugging purposes TODO will be deleted
         self.prev_goal_cursor = self.goal_cursor if self.goal_cursor != self.prev_goal_cursor or not self.history else -1 #flagging it for increasing the size of the subset of goals
+        self.extra_goal_no = self.extra_goal_no + 1 if self.prev_goal_cursor == -1 else 0
         print(f"Unsatisfied subgoal is: {result if self.history else '''Unsatisfied. Dialogue hasn't started yet'''}")
         print("user response:")
         if self.goal_cursor == len(self.goals):

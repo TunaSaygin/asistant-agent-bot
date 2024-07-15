@@ -259,9 +259,5 @@ if __name__ == "__main__":
         goal_data=None,
         debug=True,# Placeholder, adjust based on actual usage
     )
-    response = system.gen_utterance("Hi, I want to book a train from Cambridge to London")
-    print(response)
-    response = system.gen_utterance("I want to travel on Tuesday")
-    print(response)
-    response = system.gen_utterance("What is the travel time?")
+    response = system.gen_utterance("Can you please recommend any Italian restaurants in Cambridge that are not in the center?")
     print(response)
