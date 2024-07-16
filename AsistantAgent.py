@@ -111,10 +111,12 @@ class AssistantAgent:
 
     def addDialogueHistory(self,dialogue):
         self.history.append(dialogue)
+    def seedDialogueHistory(self,dial_history):
+        self.history = dial_history
     def resetDialogueHistory(self):
         self.history=[]
     def gen_utterance(self,user_request):
-        retrieve_history = self.history + ["Customer: " + user_request]
+        retrieve_history = self.history + ["User: " + user_request]
         retrieved_examples = self.example_retriever.retrieve("\n".join(retrieve_history[-self.context_size:]), k=20)
         retrieved_domains = [example['domain'] for example in retrieved_examples]
         selected_domain, dp = self.domain_model(self.domain_prompt, predict=True, history="\n".join(self.history[-2:]), utterance=F"Customer: {user_request.strip()}")
