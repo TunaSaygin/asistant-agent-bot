@@ -1,8 +1,10 @@
 from typing import Any, Dict
 import os
+import huggingface_hub
+import torch
 # import openai outdated
 from openai import OpenAI
-
+from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig, TrainingArguments
 from prompts import FewShotPrompt, SimpleTemplatePrompt
 
 class SimplePromptedLLM:
@@ -44,8 +46,121 @@ class FewShotPromptedLLM(SimplePromptedLLM):
        #     filled_prompt = prompt(positive_examples[:1], negative_examples[:1], **kwargs)
         prediction = self._predict(filled_prompt, **kwargs) if predict else None
         return prediction, filled_prompt
+    
+class FewShotLLAMAFactory:
+    def __init__(self) -> None:
+        pass
+    def _get_model(self, model_id,is_8bit = True):
+        if is_8bit:
+            bnb_config = BitsAndBytesConfig(
+                load_in_8bit=True,
+                bnb_8bit_use_double_quant=True,
+                bnb_8bit_quant_type="nf4",
+                bnb_8bit_compute_dtype=torch.bfloat16
+            )
+        else:
+            bnb_config = BitsAndBytesConfig(
+                load_in_4bit=True,
+                bnb_4bit_use_double_quant=True,
+                bnb_4bit_quant_type="nf4",
+                bnb_4bit_compute_dtype=torch.bfloat16
+            )
+        model = AutoModelForCausalLM.from_pretrained(
+            model_id,
+            quantization_config = bnb_config,
+            device_map = "auto",
+            cache_dir = "cache"
+        )
+        return model
+    def _get_tokenizer(self, model_id,stop_tokens=True):
+        tokenizer = AutoTokenizer.from_pretrained(model_id)
+        tokenizer.pad_token_id = (
+                tokenizer.eos_token_id
+            )    
+        return tokenizer
+    def build(self):
+        tokenizer = self._get_tokenizer(model_id="meta-llama/Meta-Llama-3-8B-Instruct")
+        model = self._get_model(model_id="meta-llama/Meta-Llama-3-8B-Instruct")
+        return FewShotPromptedLLAMA3(model,tokenizer)
+class FewShotPromptedLLAMA3(FewShotPromptedLLM):
+    def __init__(self, model, tokenizer, type='seq2seq'):
+        super().__init__(model, tokenizer, type)
+        self.MAX_LEN = 100
+        self.model = model
+        self.tokenizer = tokenizer
+    def _predict(self,text,**kwargs):
+        formatted_prmpt = self._convert_prmpt2LLAMA3(text)
+        inputs = self.tokenizer(formatted_prmpt, return_tensors="pt")
+        
+        # Generate response
+        output_sequences = self.model.generate(
+            input_ids=inputs['input_ids'],
+            max_length=self.MAX_LEN,
+            **kwargs
+        )
+        
+        # Decode the generated text
+        generated_text = self.tokenizer.decode(output_sequences[0], skip_special_tokens=True)
+        
+        return generated_text
 
+    def _get_model(self, model_id,is_8bit = True):
+        if is_8bit:
+            bnb_config = BitsAndBytesConfig(
+                load_in_8bit=True,
+                bnb_8bit_use_double_quant=True,
+                bnb_8bit_quant_type="nf4",
+                bnb_8bit_compute_dtype=torch.bfloat16
+            )
+        else:
+            bnb_config = BitsAndBytesConfig(
+                load_in_4bit=True,
+                bnb_4bit_use_double_quant=True,
+                bnb_4bit_quant_type="nf4",
+                bnb_4bit_compute_dtype=torch.bfloat16
+            )
+        model = AutoModelForCausalLM.from_pretrained(
+            model_id,
+            quantization_config = bnb_config,
+            device_map = "auto",
+            cache_dir = "cache"
+        )
+        return model
+    def get_tokenizer(self, model_id,stop_tokens=True):
+        tokenizer = AutoTokenizer.from_pretrained(model_id)
+        tokenizer.pad_token_id = (
+                tokenizer.eos_token_id
+            )    
+        return tokenizer
+    def tokenize(self, prompt, add_eos_token=True):
+        result = self.tokenizer(
+            prompt,
+            truncation=True,
+            max_length=self.MAX_LEN,
+            padding=False,
+            return_tensors=None,
+        )
+        if (
+            result["input_ids"][-1] != self.tokenizer.eos_token_id
+            and len(result["input_ids"]) < self.MAX_LEN
+            and add_eos_token
+        ):
+            result["input_ids"][self.MAX_LEN-1] = self.tokenizer.eos_token_id
+            result["attention_mask"][self.MAX_LEN-1] = 1
+        
+        result["labels"] = result["input_ids"].copy()
+        
+        return result
+    def _convert_prmpt2LLAMA3(self,raw_prmpt):
+        split_keyword = "Now"
+        parts = raw_prmpt.split(split_keyword, 1)  # Split only on the first occurrence of "Now"
 
+        # First part before "Now"
+        first_part = parts[0].strip()
+
+        # Second part after "Now"
+        second_part = split_keyword + parts[1].strip()
+        return "<|begin_of_text|><|start_header_id|>system<|end_header_id|>"+first_part +  "<|eot_id|> <|start_header_id|>user<|end_header_id|>" + second_part + " <|eot_id|><|start_header_id|>assistant<|end_header_id|>"
 class FewShotOpenAILLM(FewShotPromptedLLM):
     def __init__(self, model_name,oai_key):
         super().__init__(None, None)

@@ -14,7 +14,9 @@ from model import (
     FewShotOpenAIChatLLM,
     ZeroShotOpenAIChatLLM,
     FewShotAlpaca,
-    ZeroShotAlpaca
+    ZeroShotAlpaca,
+    FewShotPromptedLLAMA3,
+    FewShotLLAMAFactory
     )
 logger = logging.getLogger(__name__)
 from utils import ExampleFormatter, ExampleRetriever, parse_state
@@ -51,6 +53,8 @@ class AssistantAgent:
             model_name = 'ChatGPT'
         elif self.model_name == 'alpaca':
             model_name = 'Alpaca-LoRA'
+        elif 'llama' in self.model_name:
+            self.model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
         else:
             model_name = 'GPT3.5'
         if self.model_name.startswith("text-"):
@@ -75,6 +79,10 @@ class AssistantAgent:
             self.model_factory = ZeroShotAlpaca if self.use_zero_shot else FewShotAlpaca
             self.model = self.model_factory(model_name="Alpaca-LoRA")
             self.domain_model = ZeroShotAlpaca(model_name="Alpaca-LoRA")
+        elif self.model_name == "meta-llama/Meta-Llama-3-8B-Instruct": 
+            self.model_factory = FewShotLLAMAFactory()
+            self.model = self.model_factory.build()
+            self.domain_model = self.model_factory.build()
         else:
             tokenizer = AutoTokenizer.from_pretrained(self.model_name, cache_dir=self.cache_dir)
             model_w = AutoModelForSeq2SeqLM.from_pretrained(self.model_name,

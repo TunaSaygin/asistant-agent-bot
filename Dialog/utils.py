@@ -31,22 +31,21 @@ class DialogueLoader:
             
             if dial_no == max_dialogues:
                 break
-            if dialogue["goal"]["topic"]["train"]:
-                print(f'Key: {key}\n Dialogue: {dialogue["log"]}\nGoals:{dialogue["goal"]["message"]}')
-                ## let's also create frames
-                # Extract Initial Message
-                initial_msg = ""
-                for line in dialogue['goal']['message']:
-                    initial_msg = initial_msg + line + " "
+            print(f'Key: {key}\n Dialogue: {dialogue["log"]}\nGoals:{dialogue["goal"]["message"]}')
+            ## let's also create frames
+            # Extract Initial Message
+            initial_msg = ""
+            for line in dialogue['goal']['message']:
+                initial_msg = initial_msg + line + " "
 
-                # Extract Conversation History
-                conv_history = []
-                for logs in dialogue['log']:
-                    conv_history.append(logs['text'])
+            # Extract Conversation History
+            conv_history = []
+            for logs in dialogue['log']:
+                conv_history.append(logs['text'])
 
-                # Create Frame
-                current_frame = Frame(initial_msg, conv_history)
-                yield dial_no, WozDialogue(dialogue["log"],key ,dialogue["goal"]["message"] if not key.startswith("WOZ") else [dialogue["goal"]["message"]]), current_frame 
+            # Create Frame
+            current_frame = Frame(initial_msg, conv_history)
+            yield dial_no, WozDialogue(dialogue["log"],key ,dialogue["goal"]["message"] if not key.startswith("WOZ") else [dialogue["goal"]["message"]]), current_frame 
 if __name__ == "__main__":
     loader = DialogueLoader()
     dialogues = loader.load_dialogue(True,1)
