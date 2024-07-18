@@ -1,3 +1,4 @@
 {
-    "api_key":"Put your key here"
+    "api_key":"Put your key here",
+    "hf_token":"Put your hf_token"
 }

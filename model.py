@@ -1,6 +1,7 @@
+import json
 from typing import Any, Dict
 import os
-import huggingface_hub
+from huggingface_hub import login
 import torch
 # import openai outdated
 from openai import OpenAI
@@ -49,7 +50,13 @@ class FewShotPromptedLLM(SimplePromptedLLM):
     
 class FewShotLLAMAFactory:
     def __init__(self) -> None:
-        pass
+        self._authenticate
+    def _authenticate(self):
+        # Replace 'YOUR_HF_API_TOKEN' with your actual Hugging Face API token
+        file_path = "key.json"
+        with open(file_path, 'r') as file:
+            hf_api_token = json.load(file)["hf_token"]
+            login(token=hf_api_token)
     def _get_model(self, model_id,is_8bit = True):
         if is_8bit:
             bnb_config = BitsAndBytesConfig(

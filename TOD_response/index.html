@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialogue Comparison</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 25%;
+            background: #2c3e50;
+            color: white;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .content {
+            width: 75%;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .turn {
+            margin: 10px 0;
+            padding: 10px;
+            cursor: pointer;
+            background: #34495e;
+            border-radius: 4px;
+        }
+        .turn:hover {
+            background: #1abc9c;
+        }
+        .turn-content {
+            display: none;
+            margin-bottom: 20px;
+        }
+        .turn-content.active {
+            display: block;
+        }
+        .turn-header {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .response {
+            padding: 10px;
+            background: #e9e9e9;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .response.gpt {
+            background: #d1ecf1;
+        }
+        .response.llama {
+            background: #f8d7da;
+        }
+        .response.gt {
+            background: #d4edda;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Dialogue IDs</h2>
+            <div id="dialogue-list">
+                <div class="turn" onclick="showDialogue('dialogue-0')">Turn 1</div>
+                <div class="turn" onclick="showDialogue('dialogue-1')">Turn 2</div>
+                <div class="turn" onclick="showDialogue('dialogue-2')">Turn 3</div>
+                <!-- More turns as needed -->
+            </div>
+        </div>
+        <div class="content">
+            <h2>Dialogue Details</h2>
+            <div id="dialogue-details">
+                <div class="turn-content" id="dialogue-0">
+                    <div class="turn-header">Dialogue ID: 1</div>
+                    <div class="response question">User: Hello! How can I help you today?</div>
+                    <div class="response gpt">GPT Response: Hi! How can I assist you today?</div>
+                    <div class="response llama">LLAMA Response: Hello! How can I assist you today?</div>
+                    <div class="response gt">GT Response: Hi there! How can I help you?</div>
+                </div>
+                <div class="turn-content" id="dialogue-1">
+                    <div class="turn-header">Dialogue ID: 2</div>
+                    <div class="response question">User: Can you tell me about your services?</div>
+                    <div class="response gpt">GPT Response: Sure, we offer a variety of services including...</div>
+                    <div class="response llama">LLAMA Response: Absolutely, we provide services such as...</div>
+                    <div class="response gt">GT Response: Certainly, our services include...</div>
+                </div>
+                <div class="turn-content" id="dialogue-2">
+                    <div class="turn-header">Dialogue ID: 3</div>
+                    <div class="response question">User: What are your operating hours?</div>
+                    <div class="response gpt">GPT Response: We are open from 9 AM to 5 PM on weekdays.</div>
+                    <div class="response llama">LLAMA Response: Our operating hours are from 9 AM to 5 PM, Monday to Friday.</div>
+                    <div class="response gt">GT Response: We operate from 9 AM to 5 PM, Monday through Friday.</div>
+                </div>
+                <!-- More dialogues as needed -->
+            </div>
+        </div>
+    </div>
+    <script>
+        function showDialogue(dialogueId) {
+            // Hide all dialogues
+            const turns = document.querySelectorAll('.turn-content');
+            turns.forEach(turn => {
+                turn.classList.remove('active');
+            });
+            // Show the selected dialogue
+            const selectedTurn = document.getElementById(dialogueId);
+            if (selectedTurn) {
+                selectedTurn.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

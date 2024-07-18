@@ -1,0 +1,7182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialogue Viewer</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; }
+        .sidebar { width: 200px; background-color: #f0f0f0; padding: 10px; border-right: 1px solid #ddd; }
+        .sidebar h2 { font-size: 18px; margin-top: 0; }
+        .dialogue-list { list-style-type: none; padding: 0; }
+        .dialogue-list li { margin-bottom: 10px; }
+        .dialogue-list a { text-decoration: none; color: blue; cursor: pointer; }
+        .content { flex: 1; padding: 20px; }
+        .dialogue { margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; border-radius: 5px; }
+        .dialogue-title { cursor: pointer; color: blue; text-decoration: underline; font-size: 18px; }
+        .dialogue-content { display: none; margin-top: 10px; }
+        .response { margin-left: 20px; }
+        .response strong { display: block; margin-top: 5px; }
+        h1 { text-align: center; }
+        h3 { color: #333; }
+        .whatsapp-message { background-color: #dcf8c6; padding: 10px; border-radius: 10px; margin-bottom: 10px; max-width: 60%; }
+        .system-message { background-color: #ffffff; padding: 10px; border-radius: 10px; margin-bottom: 10px; max-width: 60%; }
+        .user-message { text-align: right; }
+    </style>
+    <script>
+        function toggleDialogueContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        }
+
+        function showDialogue(id) {
+            var dialogues = document.getElementsByClassName('dialogue-content');
+            for (var i = 0; i < dialogues.length; i++) {
+                dialogues[i].style.display = 'none';
+            }
+            document.getElementById(id).style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Dialogues</h2>
+        <ul class="dialogue-list">
+<li><a onclick="showDialogue('dialogue_0')">Dialogue 1</a></li><li><a onclick="showDialogue('dialogue_1')">Dialogue 2</a></li><li><a onclick="showDialogue('dialogue_2')">Dialogue 3</a></li><li><a onclick="showDialogue('dialogue_3')">Dialogue 4</a></li><li><a onclick="showDialogue('dialogue_4')">Dialogue 5</a></li><li><a onclick="showDialogue('dialogue_5')">Dialogue 6</a></li><li><a onclick="showDialogue('dialogue_6')">Dialogue 7</a></li><li><a onclick="showDialogue('dialogue_7')">Dialogue 8</a></li><li><a onclick="showDialogue('dialogue_8')">Dialogue 9</a></li><li><a onclick="showDialogue('dialogue_9')">Dialogue 10</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <h1>Dialogue Viewer</h1>
+
+    <div class="dialogue-content" id="dialogue_0" style="display: none;">
+        <h3>History</h3>
+    <div class="whatsapp-message user-message">"User: Hello, Im looking for a modern european restaurant in the center.", System: Is there a particular price range that you would prefer?</div><div class="whatsapp-message user-message">User: Maybe something in the moderate range.</div><div class="whatsapp-message system-message">System: We have two such restarants, de luca cucina and bar on Regent Street, and riverside brasserie on Mill Lane. Do you have a preference?</div><div class="whatsapp-message user-message">User: Can you book 2 people at 19:30 on friday for Riverside brasserie. Can I get a reference number? Thank you. </div><div class="whatsapp-message system-message">System: Sure thing, your reservation number is 3BADCF9I. Anything else I can help with today?</div>
+        <h3>GT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "modern european",
+      "pricerange": "not mentioned",
+      "name": "not mentioned",
+      "area": "centre"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> Is there a particular price range that you would prefer?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "modern european",
+      "pricerange": "moderate",
+      "name": "not mentioned",
+      "area": "centre"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> We have two such restarants, de luca cucina and bar on Regent Street, and riverside brasserie on Mill Lane. Do you have a preference?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [
+        {
+          "name": "riverside brasserie",
+          "reference": "3BADCF9I"
+        }
+      ],
+      "people": "2",
+      "day": "friday",
+      "time": "19:30"
+    },
+    "semi": {
+      "food": "modern european",
+      "pricerange": "moderate",
+      "name": "riverside brasserie",
+      "area": "centre"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> Sure thing, your reservation number is 3BADCF9I. Anything else I can help with today?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [
+        {
+          "name": "riverside brasserie",
+          "reference": "3BADCF9I"
+        }
+      ],
+      "people": "2",
+      "day": "friday",
+      "time": "19:30"
+    },
+    "semi": {
+      "food": "modern european",
+      "pricerange": "moderate",
+      "name": "riverside brasserie",
+      "area": "centre"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> Great, enjoy your dinner and have a nice day.  Thank you!
+            </div>
+        
+        <h3>GPT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "I'm sorry, but I couldn't find any modern European restaurants in the center."
+                <strong>Text:</strong> {'restaurant': {'area': 'center', 'food': 'european'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The [de luca cucina and bar] is a modern European restaurant located at [83 Regent Street] in the center. Their phone number is [01223356666]."
+                <strong>Text:</strong> {'restaurant': {'pricerange': 'moderate', 'area': 'centre'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I'm sorry, but I couldn't find any restaurants matching your criteria in the database."
+                <strong>Text:</strong> {'restaurant': {'pricerange': 'moderate', 'area': 'centre', 'food': 'empty', 'name': 'Riverside'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "Your reservation at Riverside Brasserie for 2 people at 19:30 on Friday has been confirmed. Your reference number is 3BADCF9I. Thank you for using our service!"
+                <strong>Text:</strong> {'restaurant': {'pricerange': 'moderate', 'area': 'centre', 'food': 'modern', 'name': 'Riverside'}}
+            </div>
+        
+        <h3>LLAMA Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "I'm sorry, but I couldn't find any modern European restaurants in the center."
+                <strong>Text:</strong> {'restaurant': {'area': 'center', 'food': 'european'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The [de luca cucina and bar] is a modern European restaurant located at [83 Regent Street] in the center. Their phone number is [01223356666]."
+                <strong>Text:</strong> {'restaurant': {'pricerange': 'moderate', 'area': 'centre'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I'm sorry, but I couldn't find any restaurants matching your criteria in the database."
+                <strong>Text:</strong> {'restaurant': {'pricerange': 'moderate', 'area': 'centre', 'food': 'empty', 'name': 'Riverside'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "Your reservation at Riverside Brasserie for 2 people at 19:30 on Friday has been confirmed. Your reference number is 3BADCF9I. Thank you for using our service!"
+                <strong>Text:</strong> {'restaurant': {'pricerange': 'moderate', 'area': 'centre', 'food': 'modern', 'name': 'Riverside'}}
+            </div>
+        
+    </div>
+    
+    <div class="dialogue-content" id="dialogue_1" style="display: none;">
+        <h3>History</h3>
+    <div class="whatsapp-message user-message">User: I was hoping that you could find a restaurant for me.</div><div class="whatsapp-message system-message">System: What type of food do you want?</div><div class="whatsapp-message user-message">User: I need the address and phone number of a restaurant in the center of town that serves Turkish food. Thanks.</div><div class="whatsapp-message system-message">System: There are 3 choices, 2 moderately priced and 1 expensive. Do you have a preference? </div><div class="whatsapp-message user-message">User: The moderately priced one sounds good can you give me the address and phone number?  Can you also find me a hotel with free wifi and 3 stars.</div><div class="whatsapp-message system-message">System: Anatolia, 30 Bridge Street cb21uj, phone number 01223362372. Gonville Hotel is 3 stars and has free wifii. Would you like a reservation?</div><div class="whatsapp-message user-message">User: Yes and I need the reference number thank you </div><div class="whatsapp-message system-message">System: I need a day that you will be arriving for the hotel reservation.</div><div class="whatsapp-message user-message">"User: Nevermind, I wont be needing that reservation after all. Thank you!", System: No worries.  Is there anything else I can help you with today? </div><div class="whatsapp-message user-message">User: May I please have the postcode, address, and hotel type?</div><div class="whatsapp-message system-message">System: Sure! It is a hotel and is located on Gonville Place with the postcode CB11LY.</div><div class="whatsapp-message user-message">User: Thank you so much.</div><div class="whatsapp-message system-message">System: You are very welcome. Are you sure there is nothing else I can assist you with today?</div>
+        <h3>GT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "not mentioned",
+      "pricerange": "not mentioned",
+      "name": "not mentioned",
+      "area": "not mentioned"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> What type of food do you want?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "turkish",
+      "pricerange": "not mentioned",
+      "name": "not mentioned",
+      "area": "centre"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> There are 3 choices, 2 moderately priced and 1 expensive. Do you have a preference? 
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "turkish",
+      "pricerange": "moderate",
+      "name": "not mentioned",
+      "area": "centre"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "not mentioned",
+      "area": "centre",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "3",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> Anatolia, 30 Bridge Street cb21uj, phone number 01223362372. Gonville Hotel is 3 stars and has free wifii. Would you like a reservation?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "turkish",
+      "pricerange": "moderate",
+      "name": "not mentioned",
+      "area": "centre"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "gonville hotel",
+      "area": "centre",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "3",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> I need a day that you will be arriving for the hotel reservation.
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "turkish",
+      "pricerange": "moderate",
+      "name": "not mentioned",
+      "area": "centre"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "gonville hotel",
+      "area": "centre",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "3",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> No worries.  Is there anything else I can help you with today? 
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "turkish",
+      "pricerange": "moderate",
+      "name": "not mentioned",
+      "area": "centre"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "gonville hotel",
+      "area": "centre",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "3",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> Sure! It is a hotel and is located on Gonville Place with the postcode CB11LY.
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "turkish",
+      "pricerange": "moderate",
+      "name": "not mentioned",
+      "area": "centre"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "gonville hotel",
+      "area": "centre",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "3",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> You are very welcome. Are you sure there is nothing else I can assist you with today?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "turkish",
+      "pricerange": "moderate",
+      "name": "not mentioned",
+      "area": "centre"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "gonville hotel",
+      "area": "centre",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "3",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> Have a nice day.
+            </div>
+        
+        <h3>GPT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "Assistant: Of course! I can help you find a restaurant. What area are you looking for?"
+                <strong>Text:</strong> {'restaurant': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "System: Sure! Let me find a restaurant in the center of town that serves Turkish food for you. Please wait a moment while I search for the information."
+                <strong>Text:</strong> {'restaurant': {'area': 'center', 'food': 'Turkish'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There are 3 choices for Turkish restaurants in the center of town that are moderately priced. Unfortunately, I don't have any specific information about these restaurants in my database. However, I can help you find a hotel with free wifi and 3 stars."
+                <strong>Text:</strong> {'restaurant': {'pricerange': 'moderate', 'area': 'centre', 'food': 'Turkish'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "[restaurant_name], [restaurant_address], [restaurant_phone] or [restaurant_postcode]"
+                <strong>Text:</strong> {'hotel': {'area': 'centre', 'internet': 'yes', 'stars': '3', 'type': 'hotel'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The address and phone number of the restaurant you requested is:"
+                <strong>Text:</strong> {'hotel': {'area': 'centre', 'internet': 'free', 'stars': '3', 'type': 'hotel'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The postcode of the hotel is [hotel_postcode], the address is [hotel_address], and the hotel type is [hotel_type]."
+                <strong>Text:</strong> {'hotel': {'type': 'hotel'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "[restaurant_name]: Anatolia"
+                <strong>Text:</strong> {'hotel': {'area': 'centre', 'internet': 'free', 'stars': '3', 'type': 'hotel'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "Anatolia restaurant is located at 30 Bridge Street, CB2 1UJ and their phone number is 01223362372. The Gonville Hotel is a 3-star hotel located on Gonville Place with the postcode CB1 1LY. Is there anything else I can assist you with today?"
+                <strong>Text:</strong> {'attraction': {'type': 'hotel', 'area': 'centre'}}
+            </div>
+        
+        <h3>LLAMA Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "Assistant: Of course! I can help you find a restaurant. What area are you looking for?"
+                <strong>Text:</strong> {'restaurant': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "System: Sure! Let me find a restaurant in the center of town that serves Turkish food for you. Please wait a moment while I search for the information."
+                <strong>Text:</strong> {'restaurant': {'area': 'center', 'food': 'Turkish'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There are 3 choices for Turkish restaurants in the center of town that are moderately priced. Unfortunately, I don't have any specific information about these restaurants in my database. However, I can help you find a hotel with free wifi and 3 stars."
+                <strong>Text:</strong> {'restaurant': {'pricerange': 'moderate', 'area': 'centre', 'food': 'Turkish'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "[restaurant_name], [restaurant_address], [restaurant_phone] or [restaurant_postcode]"
+                <strong>Text:</strong> {'hotel': {'area': 'centre', 'internet': 'yes', 'stars': '3', 'type': 'hotel'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The address and phone number of the restaurant you requested is:"
+                <strong>Text:</strong> {'hotel': {'area': 'centre', 'internet': 'free', 'stars': '3', 'type': 'hotel'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The postcode of the hotel is [hotel_postcode], the address is [hotel_address], and the hotel type is [hotel_type]."
+                <strong>Text:</strong> {'hotel': {'type': 'hotel'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "[restaurant_name]: Anatolia"
+                <strong>Text:</strong> {'hotel': {'area': 'centre', 'internet': 'free', 'stars': '3', 'type': 'hotel'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "Anatolia restaurant is located at 30 Bridge Street, CB2 1UJ and their phone number is 01223362372. The Gonville Hotel is a 3-star hotel located on Gonville Place with the postcode CB1 1LY. Is there anything else I can assist you with today?"
+                <strong>Text:</strong> {'attraction': {'type': 'hotel', 'area': 'centre'}}
+            </div>
+        
+    </div>
+    
+    <div class="dialogue-content" id="dialogue_2" style="display: none;">
+        <h3>History</h3>
+    <div class="whatsapp-message user-message">User: I need some information on a train going to cambridge.</div><div class="whatsapp-message user-message">"System: Id love to help you with that! What day are you headed out?", User: Sunday. Sometime after 21:00, if possible.</div><div class="whatsapp-message system-message">System: There are multiple trains headed to cambridge sunday after 21:00. Where are you leaving from?</div><div class="whatsapp-message user-message">User: I am leaving from ely.</div><div class="whatsapp-message system-message">System: I have train TR4205 that leaves at 21:35 and will arrive in Cambridge at 21:52. The price per ticket is 3.52 pounds. Would you like a ticket for this train?</div><div class="whatsapp-message user-message">User: yeah, i need eight tickets.</div><div class="whatsapp-message system-message">System: Booking was successful, the total fee is 28.16 GBP payable at the station, your reference number is  0V72HM78. Will that be all?</div><div class="whatsapp-message user-message">User: I also need a guesthouse located in the north.</div><div class="whatsapp-message system-message">System: There are several choices, but all are priced either cheap or moderate. Which would you prefer?</div><div class="whatsapp-message user-message">"User: Are there any with a star of 4? Id like free parking as well if that is available.", System: I have 7 entries that fit your criteria. 6 are moderately priced, and one is cheap. Would you like information about any of these?</div><div class="whatsapp-message user-message">User: Yes info on the cheap price range</div><div class="whatsapp-message system-message">System: Worth house is in the cheap price range and located at 152 chesterton road\t</div><div class="whatsapp-message user-message">User: Thanks, for now I just need their postcode and whether or not they have free internet.  </div><div class="whatsapp-message system-message">System: They do have free internet. Their post code is cb41da. Will that be all for today?</div>
+        <h3>GT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "not mentioned",
+      "destination": "cambridge",
+      "day": "not mentioned",
+      "arriveBy": "not mentioned",
+      "departure": "not mentioned"
+    }
+  }
+}
+                <strong>Text:</strong> I'd love to help you with that! What day are you headed out?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "21:00",
+      "destination": "cambridge",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "not mentioned"
+    }
+  }
+}
+                <strong>Text:</strong> There are multiple trains headed to cambridge sunday after 21:00. Where are you leaving from?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "21:00",
+      "destination": "cambridge",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "ely"
+    }
+  }
+}
+                <strong>Text:</strong> I have train TR4205 that leaves at 21:35 and will arrive in Cambridge at 21:52. The price per ticket is 3.52 pounds. Would you like a ticket for this train?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [
+        {
+          "trainID": "TR4205",
+          "reference": "0V72HM78"
+        }
+      ],
+      "people": "8"
+    },
+    "semi": {
+      "leaveAt": "21:00",
+      "destination": "cambridge",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "ely"
+    }
+  }
+}
+                <strong>Text:</strong> Booking was successful, the total fee is 28.16 GBP payable at the station, your reference number is  0V72HM78. Will that be all?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "not mentioned",
+      "area": "north",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "not mentioned",
+      "internet": "not mentioned",
+      "type": "guesthouse"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [
+        {
+          "trainID": "TR4205",
+          "reference": "0V72HM78"
+        }
+      ],
+      "people": "8"
+    },
+    "semi": {
+      "leaveAt": "21:00",
+      "destination": "cambridge",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "ely"
+    }
+  }
+}
+                <strong>Text:</strong> There are several choices, but all are priced either cheap or moderate. Which would you prefer?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "not mentioned",
+      "area": "north",
+      "parking": "yes",
+      "pricerange": "not mentioned",
+      "stars": "4",
+      "internet": "not mentioned",
+      "type": "guesthouse"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [
+        {
+          "trainID": "TR4205",
+          "reference": "0V72HM78"
+        }
+      ],
+      "people": "8"
+    },
+    "semi": {
+      "leaveAt": "21:00",
+      "destination": "cambridge",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "ely"
+    }
+  }
+}
+                <strong>Text:</strong> I have 7 entries that fit your criteria. 6 are moderately priced, and one is cheap. Would you like information about any of these?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "not mentioned",
+      "area": "north",
+      "parking": "yes",
+      "pricerange": "cheap",
+      "stars": "4",
+      "internet": "not mentioned",
+      "type": "guesthouse"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [
+        {
+          "trainID": "TR4205",
+          "reference": "0V72HM78"
+        }
+      ],
+      "people": "8"
+    },
+    "semi": {
+      "leaveAt": "21:00",
+      "destination": "cambridge",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "ely"
+    }
+  }
+}
+                <strong>Text:</strong> Worth house is in the cheap price range and located at 152 chesterton road	
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "worth house",
+      "area": "north",
+      "parking": "yes",
+      "pricerange": "cheap",
+      "stars": "4",
+      "internet": "not mentioned",
+      "type": "guesthouse"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [
+        {
+          "trainID": "TR4205",
+          "reference": "0V72HM78"
+        }
+      ],
+      "people": "8"
+    },
+    "semi": {
+      "leaveAt": "21:00",
+      "destination": "cambridge",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "ely"
+    }
+  }
+}
+                <strong>Text:</strong> They do have free internet. Their post code is cb41da. Will that be all for today?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "worth house",
+      "area": "north",
+      "parking": "yes",
+      "pricerange": "cheap",
+      "stars": "4",
+      "internet": "not mentioned",
+      "type": "guesthouse"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [
+        {
+          "trainID": "TR4205",
+          "reference": "0V72HM78"
+        }
+      ],
+      "people": "8"
+    },
+    "semi": {
+      "leaveAt": "21:00",
+      "destination": "cambridge",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "ely"
+    }
+  }
+}
+                <strong>Text:</strong> You're welcome, have a great day!
+            </div>
+        
+        <h3>GPT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> ""
+                <strong>Text:</strong> {'train': {'destination': 'cambridge'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> ""
+                <strong>Text:</strong> {'train': {'day': 'Sunday'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There are multiple trains headed to Cambridge on Sunday after 21:00. The available trains are:"
+                <strong>Text:</strong> {'train': {'day': 'Sunday', 'departure': 'ely', 'destination': 'cambridge'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The reference number for your train tickets is [reference]."
+                <strong>Text:</strong> {'train': {'day': 'sunday', 'departure': 'ely', 'destination': 'cambridge'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I'm sorry, but I am an assistant that helps people book hotels, not trains. Is there anything else I can assist you with regarding hotel bookings?"
+                <strong>Text:</strong> {'hotel': {'area': 'north', 'type': 'guest'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I'm sorry, but I couldn't find any guesthouses in the north area with a 4-star rating and free parking. However, I can suggest some guesthouses in the north area that are either cheap or moderate in price. Let me know if you're interested in any of them."
+                <strong>Text:</strong> {'hotel': {'stars': '4', 'parking': 'yes'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I'm sorry, but I couldn't find any guesthouses in the north area with a 4-star rating and free parking in the cheap price range. Is there anything else I can assist you with?"
+                <strong>Text:</strong> {'hotel': {'pricerange': 'cheap'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The postcode for Worth House is [hotel_postcode] and they do not have free internet."
+                <strong>Text:</strong> {'hotel': {'internet': 'yes'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The postcode for Worth House is cb41da and they do have free internet. Is there anything else I can assist you with?"
+                <strong>Text:</strong> {'hotel': {'internet': 'yes', 'type': 'guest', 'pricerange': 'cheap'}}
+            </div>
+        
+        <h3>LLAMA Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> ""
+                <strong>Text:</strong> {'train': {'destination': 'cambridge'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> ""
+                <strong>Text:</strong> {'train': {'day': 'Sunday'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There are multiple trains headed to Cambridge on Sunday after 21:00. The available trains are:"
+                <strong>Text:</strong> {'train': {'day': 'Sunday', 'departure': 'ely', 'destination': 'cambridge'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The reference number for your train tickets is [reference]."
+                <strong>Text:</strong> {'train': {'day': 'sunday', 'departure': 'ely', 'destination': 'cambridge'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I'm sorry, but I am an assistant that helps people book hotels, not trains. Is there anything else I can assist you with regarding hotel bookings?"
+                <strong>Text:</strong> {'hotel': {'area': 'north', 'type': 'guest'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I'm sorry, but I couldn't find any guesthouses in the north area with a 4-star rating and free parking. However, I can suggest some guesthouses in the north area that are either cheap or moderate in price. Let me know if you're interested in any of them."
+                <strong>Text:</strong> {'hotel': {'stars': '4', 'parking': 'yes'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I'm sorry, but I couldn't find any guesthouses in the north area with a 4-star rating and free parking in the cheap price range. Is there anything else I can assist you with?"
+                <strong>Text:</strong> {'hotel': {'pricerange': 'cheap'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The postcode for Worth House is [hotel_postcode] and they do not have free internet."
+                <strong>Text:</strong> {'hotel': {'internet': 'yes'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The postcode for Worth House is cb41da and they do have free internet. Is there anything else I can assist you with?"
+                <strong>Text:</strong> {'hotel': {'internet': 'yes', 'type': 'guest', 'pricerange': 'cheap'}}
+            </div>
+        
+    </div>
+    
+    <div class="dialogue-content" id="dialogue_3" style="display: none;">
+        <h3>History</h3>
+    <div class="whatsapp-message user-message">User: While in Cambridge I want to get a train that leaves on Sunday and goes to stansted airport.</div><div class="whatsapp-message system-message">System: There are 19 trains that day. What time do you need to leave cambridge and/or arrive at the airport?</div><div class="whatsapp-message user-message">User: I would like to leave Cambridge after 13:15, thank you</div><div class="whatsapp-message user-message">"System: The earliest leaves at 13:40 and the trains depart every hour through 23:40. If youd like to choose one I can book it for you.", User: That would be great.  How much would it cost to travel to stansted from Cambridge?</div><div class="whatsapp-message system-message">System: It will cost 8.08 pounds. Would you like me to book a train for you?</div><div class="whatsapp-message user-message">User: Yes. I am looking for places to go in the centre area. I am looking for college.</div><div class="whatsapp-message system-message">System: There are 13 choices, how do you feel about Emmanuel College?</div><div class="whatsapp-message user-message">"User: I wouldnt mind seeing Emmanuel College. Can you give me the postcode?", System: Sure, Emmanuel College has a postcode of cb23ap.</div><div class="whatsapp-message user-message">User: Can you please give me the exact address.</div><div class="whatsapp-message system-message">"System: The address for emmanuel college is saint andrews street. Is there any other information I can provide?"</div>
+        <h3>GT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "not mentioned",
+      "destination": "stansted airport",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> There are 19 trains that day. What time do you need to leave cambridge and/or arrive at the airport?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "13:15",
+      "destination": "stansted airport",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> The earliest leaves at 13:40 and the trains depart every hour through 23:40. If you'd like to choose one I can book it for you.
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "13:15",
+      "destination": "stansted airport",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> It will cost 8.08 pounds. Would you like me to book a train for you?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "college",
+      "name": "not mentioned",
+      "area": "centre"
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "13:15",
+      "destination": "stansted airport",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> There are 13 choices, how do you feel about Emmanuel College?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "college",
+      "name": "none",
+      "area": "centre"
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "13:15",
+      "destination": "stansted airport",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> Sure, Emmanuel College has a postcode of cb23ap.
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "college",
+      "name": "none",
+      "area": "centre"
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "13:15",
+      "destination": "stansted airport",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> The address for emmanuel college is saint andrew's street. Is there any other information I can provide?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "college",
+      "name": "none",
+      "area": "centre"
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "13:15",
+      "destination": "stansted airport",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> Welcome, have a nice day.
+            </div>
+        
+        <h3>GPT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "Assistant: I found several trains that match your request. Here are the details:"
+                <strong>Text:</strong> {'train': {'day': 'sunday', 'departure': 'cambridge', 'destination': 'stansted'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The next train from Cambridge to Stansted Airport on Sunday leaves at 13:40 and arrives at 14:08. The duration of the journey is 28 minutes and the price is 8.08 pounds. The train ID is TR1668."
+                <strong>Text:</strong> {'train': {'day': 'sunday', 'departure': 'cambridge'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The train that leaves Cambridge after 13:15 is at 13:40. The trains depart every hour through 23:40. If you'd like, I can book it for you."
+                <strong>Text:</strong> {'train': {'departure': 'Cambridge', 'destination': 'stansted'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There are 19 trains that day. What time do you need to leave Cambridge and/or arrive at the airport?"
+                <strong>Text:</strong> {'attraction': {'area': 'centre'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The postcode for Emmanuel College is [attraction_postcode]."
+                <strong>Text:</strong> {'attraction': {'area': 'centre', 'type': 'college'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The address of Emmanuel College is [attraction_address]."
+                <strong>Text:</strong> {'attraction': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The postcode for Emmanuel College is cb23ap. The exact address for Emmanuel College is Saint Andrew's Street. Is there any other information I can provide?"
+                <strong>Text:</strong> {'attraction': {'type': 'college', 'area': 'centre'}}
+            </div>
+        
+        <h3>LLAMA Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "Assistant: I found several trains that match your request. Here are the details:"
+                <strong>Text:</strong> {'train': {'day': 'sunday', 'departure': 'cambridge', 'destination': 'stansted'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The next train from Cambridge to Stansted Airport on Sunday leaves at 13:40 and arrives at 14:08. The duration of the journey is 28 minutes and the price is 8.08 pounds. The train ID is TR1668."
+                <strong>Text:</strong> {'train': {'day': 'sunday', 'departure': 'cambridge'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The train that leaves Cambridge after 13:15 is at 13:40. The trains depart every hour through 23:40. If you'd like, I can book it for you."
+                <strong>Text:</strong> {'train': {'departure': 'Cambridge', 'destination': 'stansted'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There are 19 trains that day. What time do you need to leave Cambridge and/or arrive at the airport?"
+                <strong>Text:</strong> {'attraction': {'area': 'centre'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The postcode for Emmanuel College is [attraction_postcode]."
+                <strong>Text:</strong> {'attraction': {'area': 'centre', 'type': 'college'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The address of Emmanuel College is [attraction_address]."
+                <strong>Text:</strong> {'attraction': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The postcode for Emmanuel College is cb23ap. The exact address for Emmanuel College is Saint Andrew's Street. Is there any other information I can provide?"
+                <strong>Text:</strong> {'attraction': {'type': 'college', 'area': 'centre'}}
+            </div>
+        
+    </div>
+    
+    <div class="dialogue-content" id="dialogue_4" style="display: none;">
+        <h3>History</h3>
+    <div class="whatsapp-message user-message">"User: Im looking for a hotel in the centre of town.", System: How about the Alexander Bed and Breakfast?</div><div class="whatsapp-message user-message">"User: Id prefer an unrated place, I dont need free parking or wifi, for what its worth.", System: I have the El Shaddai and the Cityroomz that are not rated. Would you like to book one of these?</div><div class="whatsapp-message user-message">User: Actually, come to think of it I might need free wifi. Do either of those offer that? </div><div class="whatsapp-message system-message">System: Yes, they both do! Do either fancy your interest?</div><div class="whatsapp-message user-message">User: Yes can you please send me the address for El Shaddai?</div><div class="whatsapp-message system-message">"System: Sure. El Shaddais address is 41 Warkworth Street. Would you like me to book a reservation there?"</div>
+        <h3>GT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "time": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "stay": "3",
+      "day": "monday",
+      "people": "2"
+    },
+    "semi": {
+      "name": "not mentioned",
+      "area": "centre",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "not mentioned",
+      "internet": "not mentioned",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> How about the Alexander Bed and Breakfast?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "time": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "stay": "3",
+      "day": "monday",
+      "people": "2"
+    },
+    "semi": {
+      "name": "not mentioned",
+      "area": "centre",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "0",
+      "internet": "not mentioned",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> I have the El Shaddai and the Cityroomz that are not rated. Would you like to book one of these?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "time": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "stay": "3",
+      "day": "monday",
+      "people": "2"
+    },
+    "semi": {
+      "name": "not mentioned",
+      "area": "centre",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "0",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> Yes, they both do! Do either fancy your interest?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "time": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "stay": "3",
+      "day": "monday",
+      "people": "2"
+    },
+    "semi": {
+      "name": "el shaddia guesthouse",
+      "area": "centre",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "0",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> Sure. El Shaddai's address is 41 Warkworth Street. Would you like me to book a reservation there?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "time": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "stay": "3",
+      "day": "monday",
+      "people": "2"
+    },
+    "semi": {
+      "name": "el shaddia guesthouse",
+      "area": "centre",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "0",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> No problem.  Happy to help.
+            </div>
+        
+        <h3>GPT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "Assistant: I found a hotel in the centre of town that matches your criteria. The hotel is called [hotel_name], located at [hotel_address]. You can contact them at [hotel_phone]."
+                <strong>Text:</strong> {'hotel': {'area': 'centre'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The Alexander Bed and Breakfast is a hotel in the centre of town. It has not been rated and does not offer free parking or wifi."
+                <strong>Text:</strong> {'hotel': {'area': 'centre', 'internet': 'no', 'parking': 'no'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The El Shaddai and the Cityroomz are unrated hotels in the centre of town. However, neither of them offer free wifi."
+                <strong>Text:</strong> {'hotel': {'internet': 'no', 'parking': 'no', 'area': 'centre'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "System: How about the Alexander Bed and Breakfast?"
+                <strong>Text:</strong> {'hotel': {'area': 'centre', 'internet': 'no', 'parking': 'no', 'type': 'bed'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "System: How about the Alexander Bed and Breakfast?"
+                <strong>Text:</strong> {'restaurant': {'area': 'centre', 'name': 'El'}}
+            </div>
+        
+        <h3>LLAMA Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "Assistant: I found a hotel in the centre of town that matches your criteria. The hotel is called [hotel_name], located at [hotel_address]. You can contact them at [hotel_phone]."
+                <strong>Text:</strong> {'hotel': {'area': 'centre'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The Alexander Bed and Breakfast is a hotel in the centre of town. It has not been rated and does not offer free parking or wifi."
+                <strong>Text:</strong> {'hotel': {'area': 'centre', 'internet': 'no', 'parking': 'no'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The El Shaddai and the Cityroomz are unrated hotels in the centre of town. However, neither of them offer free wifi."
+                <strong>Text:</strong> {'hotel': {'internet': 'no', 'parking': 'no', 'area': 'centre'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "System: How about the Alexander Bed and Breakfast?"
+                <strong>Text:</strong> {'hotel': {'area': 'centre', 'internet': 'no', 'parking': 'no', 'type': 'bed'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "System: How about the Alexander Bed and Breakfast?"
+                <strong>Text:</strong> {'restaurant': {'area': 'centre', 'name': 'El'}}
+            </div>
+        
+    </div>
+    
+    <div class="dialogue-content" id="dialogue_5" style="display: none;">
+        <h3>History</h3>
+    <div class="whatsapp-message user-message">"User: Hello, Im looking for information on a hotel called Hobsons House.", System: Hobsons House is a 3 star, moderately priced guesthouse in the west. Would you like me to book a room for you?</div><div class="whatsapp-message user-message">User: Yes I need accommodations for 8 people for 3 nights starting from Sunday.  I will also need a reference number once the arrangements are made.</div><div class="whatsapp-message system-message">System: Okay. Your reservation for 8 people, staying 3 nights, starting on Sunday at Hobsons House was successful. The reference number is QGI4OAH5. Is there anything else I can do for you?</div><div class="whatsapp-message user-message">User: I also need a train.</div><div class="whatsapp-message system-message">System: Where would you like the train for and when did you want to travel?</div><div class="whatsapp-message user-message">User: I need to go to the stansted airport on wednesday.</div><div class="whatsapp-message system-message">System: Where will you leave from?</div><div class="whatsapp-message user-message">"User: Im leaving from Cambridge.", System: What time would you like to leave or arrive by?</div><div class="whatsapp-message user-message">User: I need to arrive at the airport by 13:15.  Can I get a departure time and also the travel time for a train?  Thanks!</div><div class="whatsapp-message system-message">System: TR1610\tleaves at 5:40 and is a 28 minute trip. Shall I book it?</div><div class="whatsapp-message user-message">User: not now. thanks for the information</div><div class="whatsapp-message system-message">System: Do you need anything else?</div>
+        <h3>GT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "hobsons house",
+      "area": "not mentioned",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "not mentioned",
+      "internet": "not mentioned",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> Hobsons House is a 3 star, moderately priced guesthouse in the west. Would you like me to book a room for you?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [
+        {
+          "name": "hobsons house",
+          "reference": "QGI4OAH5"
+        }
+      ],
+      "people": "8",
+      "day": "sunday",
+      "stay": "3"
+    },
+    "semi": {
+      "name": "hobsons house",
+      "area": "not mentioned",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "not mentioned",
+      "internet": "not mentioned",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> Okay. Your reservation for 8 people, staying 3 nights, starting on Sunday at Hobsons House was successful. The reference number is QGI4OAH5. Is there anything else I can do for you?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [
+        {
+          "name": "hobsons house",
+          "reference": "QGI4OAH5"
+        }
+      ],
+      "people": "8",
+      "day": "sunday",
+      "stay": "3"
+    },
+    "semi": {
+      "name": "hobsons house",
+      "area": "not mentioned",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "not mentioned",
+      "internet": "not mentioned",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "not mentioned",
+      "destination": "not mentioned",
+      "day": "not mentioned",
+      "arriveBy": "not mentioned",
+      "departure": "not mentioned"
+    }
+  }
+}
+                <strong>Text:</strong> Where would you like the train for and when did you want to travel?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [
+        {
+          "name": "hobsons house",
+          "reference": "QGI4OAH5"
+        }
+      ],
+      "people": "8",
+      "day": "sunday",
+      "stay": "3"
+    },
+    "semi": {
+      "name": "hobsons house",
+      "area": "not mentioned",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "not mentioned",
+      "internet": "not mentioned",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "not mentioned",
+      "destination": "stansted airport",
+      "day": "wednesday",
+      "arriveBy": "not mentioned",
+      "departure": "not mentioned"
+    }
+  }
+}
+                <strong>Text:</strong> Where will you leave from?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [
+        {
+          "name": "hobsons house",
+          "reference": "QGI4OAH5"
+        }
+      ],
+      "people": "8",
+      "day": "sunday",
+      "stay": "3"
+    },
+    "semi": {
+      "name": "hobsons house",
+      "area": "not mentioned",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "not mentioned",
+      "internet": "not mentioned",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "not mentioned",
+      "destination": "stansted airport",
+      "day": "wednesday",
+      "arriveBy": "not mentioned",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> What time would you like to leave or arrive by?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [
+        {
+          "name": "hobsons house",
+          "reference": "QGI4OAH5"
+        }
+      ],
+      "people": "8",
+      "day": "sunday",
+      "stay": "3"
+    },
+    "semi": {
+      "name": "hobsons house",
+      "area": "not mentioned",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "not mentioned",
+      "internet": "not mentioned",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "not mentioned",
+      "destination": "stansted airport",
+      "day": "wednesday",
+      "arriveBy": "13:15",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> TR1610	leaves at 5:40 and is a 28 minute trip. Shall I book it?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [
+        {
+          "name": "hobsons house",
+          "reference": "QGI4OAH5"
+        }
+      ],
+      "people": "8",
+      "day": "sunday",
+      "stay": "3"
+    },
+    "semi": {
+      "name": "hobsons house",
+      "area": "not mentioned",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "not mentioned",
+      "internet": "not mentioned",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "not mentioned",
+      "destination": "stansted airport",
+      "day": "wednesday",
+      "arriveBy": "13:15",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> Do you need anything else?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [
+        {
+          "name": "hobsons house",
+          "reference": "QGI4OAH5"
+        }
+      ],
+      "people": "8",
+      "day": "sunday",
+      "stay": "3"
+    },
+    "semi": {
+      "name": "hobsons house",
+      "area": "not mentioned",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "not mentioned",
+      "internet": "not mentioned",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "not mentioned",
+      "destination": "stansted airport",
+      "day": "wednesday",
+      "arriveBy": "13:15",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> Thank you for contacting us and have a nice day.
+            </div>
+        
+        <h3>GPT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "Assistant: Sure, I can help you with that. Let me check if there is any information available on the hotel called Hobsons House."
+                <strong>Text:</strong> {'hotel': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The hotel Hobsons House is located in the west area. It is a 3-star guesthouse with moderate pricing. Would you like me to book a room for you?"
+                <strong>Text:</strong> {'hotel': {'area': 'west', 'stars': '3', 'type': 'guest', 'pricerange': 'moderately'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I'm sorry, but I couldn't find any train connections from Cambridge to Stansted Airport on Sunday."
+                <strong>Text:</strong> {'train': {'day': 'Sunday'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The train from Cambridge to Stansted Airport on Wednesday is available. The train leaves Cambridge at 05:40 and arrives at Stansted Airport at 06:08. The duration of the journey is 28 minutes and the price is 10.10 pounds. The reference number for the train booking is 00001522."
+                <strong>Text:</strong> {'train': {'day': 'wednesday', 'destination': 'stansted'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I can help you book a taxi to Stansted Airport from Cambridge. The taxi is a [color] [type] and the phone number is 24297391854."
+                <strong>Text:</strong> {'taxi': {'departure': 'Cambridge', 'destination': 'stansted'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The train schedule from Cambridge to Stansted Airport on Wednesday is as follows:"
+                <strong>Text:</strong> {'train': {'departure': 'Cambridge', 'destination': 'stansted', 'day': 'wednesday'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The train from Cambridge to Stansted Airport on Wednesday is TR1610. It leaves at 5:40 and the travel time is 28 minutes."
+                <strong>Text:</strong> {'train': {'day': 'wednesday', 'departure': 'Cambridge', 'destination': 'stansted'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "You're welcome! If you need any further assistance, feel free to ask. Have a great day!"
+                <strong>Text:</strong> {'taxi': {'departure': 'Cambridge', 'destination': 'stansted'}}
+            </div>
+        
+        <h3>LLAMA Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "Assistant: Sure, I can help you with that. Let me check if there is any information available on the hotel called Hobsons House."
+                <strong>Text:</strong> {'hotel': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The hotel Hobsons House is located in the west area. It is a 3-star guesthouse with moderate pricing. Would you like me to book a room for you?"
+                <strong>Text:</strong> {'hotel': {'area': 'west', 'stars': '3', 'type': 'guest', 'pricerange': 'moderately'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I'm sorry, but I couldn't find any train connections from Cambridge to Stansted Airport on Sunday."
+                <strong>Text:</strong> {'train': {'day': 'Sunday'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The train from Cambridge to Stansted Airport on Wednesday is available. The train leaves Cambridge at 05:40 and arrives at Stansted Airport at 06:08. The duration of the journey is 28 minutes and the price is 10.10 pounds. The reference number for the train booking is 00001522."
+                <strong>Text:</strong> {'train': {'day': 'wednesday', 'destination': 'stansted'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I can help you book a taxi to Stansted Airport from Cambridge. The taxi is a [color] [type] and the phone number is 24297391854."
+                <strong>Text:</strong> {'taxi': {'departure': 'Cambridge', 'destination': 'stansted'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The train schedule from Cambridge to Stansted Airport on Wednesday is as follows:"
+                <strong>Text:</strong> {'train': {'departure': 'Cambridge', 'destination': 'stansted', 'day': 'wednesday'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The train from Cambridge to Stansted Airport on Wednesday is TR1610. It leaves at 5:40 and the travel time is 28 minutes."
+                <strong>Text:</strong> {'train': {'day': 'wednesday', 'departure': 'Cambridge', 'destination': 'stansted'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "You're welcome! If you need any further assistance, feel free to ask. Have a great day!"
+                <strong>Text:</strong> {'taxi': {'departure': 'Cambridge', 'destination': 'stansted'}}
+            </div>
+        
+    </div>
+    
+    <div class="dialogue-content" id="dialogue_6" style="display: none;">
+        <h3>History</h3>
+    <div class="whatsapp-message user-message">"User: I need to find the closest hospital, Ive been injured.", "System: Im sorry to hear about your injury. Addenbrookes Hospital is where youll want to go, Telephone\t:\t01223245151,  Address\tHills Rd, Cambridge, Postcode CB20QQ.\n"</div>
+        <h3>GT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "time": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": "not mentioned"
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "stay": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> I'm sorry to hear about your injury. Addenbrookes Hospital is where you'll want to go, Telephone	:	01223245151,  Address	Hills Rd, Cambridge, Postcode CB20QQ.
+
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "time": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": "not mentioned"
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "stay": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> Thank you. Goodbye.
+            </div>
+        
+        <h3>GPT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "I'm sorry to hear that you've been injured. I can help you find the closest hospital. Can you please provide me with your current location?"
+                <strong>Text:</strong> {'hospital': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "You're welcome! If you have any other questions or need further assistance, feel free to ask."
+                <strong>Text:</strong> {'hospital': {}}
+            </div>
+        
+        <h3>LLAMA Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "I'm sorry to hear that you've been injured. I can help you find the closest hospital. Can you please provide me with your current location?"
+                <strong>Text:</strong> {'hospital': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "You're welcome! If you have any other questions or need further assistance, feel free to ask."
+                <strong>Text:</strong> {'hospital': {}}
+            </div>
+        
+    </div>
+    
+    <div class="dialogue-content" id="dialogue_7" style="display: none;">
+        <h3>History</h3>
+    <div class="whatsapp-message user-message">User: I need a train going to cambridge after 10:15 please.</div><div class="whatsapp-message system-message">System: What is your departure station please?</div><div class="whatsapp-message user-message">User: I am departing from Ely.</div><div class="whatsapp-message system-message">System: great, and on what day will you be traveling?</div><div class="whatsapp-message user-message">User: I will leave Thursday. </div><div class="whatsapp-message system-message">System: okay, the TR0813 leaves at 11:35 and arrives by 11:52. Would you like me to make a reservation for you?</div><div class="whatsapp-message user-message">User: Yes, please.  I need tickets for seven people.</div><div class="whatsapp-message system-message">System: Perfect, the train for 7 people is booked. The reference number is X5NYAW3W. Is there anything else I can help with?</div><div class="whatsapp-message user-message">User: Are there any modern european restaurants in the centre area?</div><div class="whatsapp-message system-message">System: Yes, there is the riverside brasserie, would you like to find out more about this restaurant?</div><div class="whatsapp-message user-message">User: Once you find the restaurant you want to book a table for the same group of people at 15:15 on the same day.</div><div class="whatsapp-message system-message">System: You are booked for riverside brasserie. Your reference number is K7R76S78. The table will be reserved for 15 minutes. Is there something else I can help with?</div>
+        <h3>GT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "10:15",
+      "destination": "cambridge",
+      "day": "not mentioned",
+      "arriveBy": "not mentioned",
+      "departure": "not mentioned"
+    }
+  }
+}
+                <strong>Text:</strong> What is your departure station please?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "10:15",
+      "destination": "cambridge",
+      "day": "not mentioned",
+      "arriveBy": "not mentioned",
+      "departure": "ely"
+    }
+  }
+}
+                <strong>Text:</strong> great, and on what day will you be traveling?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "10:15",
+      "destination": "cambridge",
+      "day": "thursday",
+      "arriveBy": "not mentioned",
+      "departure": "ely"
+    }
+  }
+}
+                <strong>Text:</strong> okay, the TR0813 leaves at 11:35 and arrives by 11:52. Would you like me to make a reservation for you?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [
+        {
+          "trainID": "TR0813",
+          "reference": "X5NYAW3W"
+        }
+      ],
+      "people": "7"
+    },
+    "semi": {
+      "leaveAt": "10:15",
+      "destination": "cambridge",
+      "day": "thursday",
+      "arriveBy": "not mentioned",
+      "departure": "ely"
+    }
+  }
+}
+                <strong>Text:</strong> Perfect, the train for 7 people is booked. The reference number is X5NYAW3W. Is there anything else I can help with?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "modern european",
+      "pricerange": "not mentioned",
+      "name": "not mentioned",
+      "area": "centre"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [
+        {
+          "trainID": "TR0813",
+          "reference": "X5NYAW3W"
+        }
+      ],
+      "people": "7"
+    },
+    "semi": {
+      "leaveAt": "10:15",
+      "destination": "cambridge",
+      "day": "thursday",
+      "arriveBy": "not mentioned",
+      "departure": "ely"
+    }
+  }
+}
+                <strong>Text:</strong> Yes, there is the riverside brasserie, would you like to find out more about this restaurant?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [
+        {
+          "name": "riverside brasserie",
+          "reference": "K7R76S78"
+        }
+      ],
+      "people": "7",
+      "day": "thursday",
+      "time": "15:15"
+    },
+    "semi": {
+      "food": "modern european",
+      "pricerange": "not mentioned",
+      "name": "riverside brasserie",
+      "area": "centre"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [
+        {
+          "trainID": "TR0813",
+          "reference": "X5NYAW3W"
+        }
+      ],
+      "people": "7"
+    },
+    "semi": {
+      "leaveAt": "10:15",
+      "destination": "cambridge",
+      "day": "thursday",
+      "arriveBy": "not mentioned",
+      "departure": "ely"
+    }
+  }
+}
+                <strong>Text:</strong> You are booked for riverside brasserie. Your reference number is K7R76S78. The table will be reserved for 15 minutes. Is there something else I can help with?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [
+        {
+          "name": "riverside brasserie",
+          "reference": "K7R76S78"
+        }
+      ],
+      "people": "7",
+      "day": "thursday",
+      "time": "15:15"
+    },
+    "semi": {
+      "food": "modern european",
+      "pricerange": "not mentioned",
+      "name": "riverside brasserie",
+      "area": "centre"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [
+        {
+          "trainID": "TR0813",
+          "reference": "X5NYAW3W"
+        }
+      ],
+      "people": "7"
+    },
+    "semi": {
+      "leaveAt": "10:15",
+      "destination": "cambridge",
+      "day": "thursday",
+      "arriveBy": "not mentioned",
+      "departure": "ely"
+    }
+  }
+}
+                <strong>Text:</strong> you are welcome anytime
+            </div>
+        
+        <h3>GPT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "I found a train going to Cambridge after 10:15. The departure time is [leaveat]."
+                <strong>Text:</strong> {'train': {'destination': 'cambridge'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The next train from Ely to Cambridge departs at 11:35 and arrives at 11:52. The duration of the journey is 17 minutes and the price is 4.40 pounds. The train ID is TR2006."
+                <strong>Text:</strong> {'train': {'departure': 'Ely'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The next train from Ely to Cambridge on Thursday is at 10:15. The journey takes approximately 17 minutes."
+                <strong>Text:</strong> {'train': {'day': 'Thursday', 'departure': 'Ely', 'destination': 'cambridge'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The train TR0813 leaves Ely at 11:35 and arrives in Cambridge by 11:52. I can make a reservation for you. How many tickets do you need?"
+                <strong>Text:</strong> {'train': {'day': 'Thursday', 'departure': 'Ely'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There are no modern European restaurants in the centre area."
+                <strong>Text:</strong> {'restaurant': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The restaurant you requested is called [riverside brasserie]. It is located at [restaurant_address]. Would you like me to book a table for you?"
+                <strong>Text:</strong> {'restaurant': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "System: Yes, there is the riverside brasserie, would you like to find out more about this restaurant?"
+                <strong>Text:</strong> {'restaurant': {}}
+            </div>
+        
+        <h3>LLAMA Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "I found a train going to Cambridge after 10:15. The departure time is [leaveat]."
+                <strong>Text:</strong> {'train': {'destination': 'cambridge'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The next train from Ely to Cambridge departs at 11:35 and arrives at 11:52. The duration of the journey is 17 minutes and the price is 4.40 pounds. The train ID is TR2006."
+                <strong>Text:</strong> {'train': {'departure': 'Ely'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The next train from Ely to Cambridge on Thursday is at 10:15. The journey takes approximately 17 minutes."
+                <strong>Text:</strong> {'train': {'day': 'Thursday', 'departure': 'Ely', 'destination': 'cambridge'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The train TR0813 leaves Ely at 11:35 and arrives in Cambridge by 11:52. I can make a reservation for you. How many tickets do you need?"
+                <strong>Text:</strong> {'train': {'day': 'Thursday', 'departure': 'Ely'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There are no modern European restaurants in the centre area."
+                <strong>Text:</strong> {'restaurant': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The restaurant you requested is called [riverside brasserie]. It is located at [restaurant_address]. Would you like me to book a table for you?"
+                <strong>Text:</strong> {'restaurant': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "System: Yes, there is the riverside brasserie, would you like to find out more about this restaurant?"
+                <strong>Text:</strong> {'restaurant': {}}
+            </div>
+        
+    </div>
+    
+    <div class="dialogue-content" id="dialogue_8" style="display: none;">
+        <h3>History</h3>
+    <div class="whatsapp-message user-message">"User: Im looking for a train that leaves Cambridge on Sunday.", System: Alright. What is your destination?</div><div class="whatsapp-message user-message">User: I want to go to Peterborough.</div><div class="whatsapp-message system-message">System: I have TR7423 that leaves at 05:00 and arrives at 5:51. Would you like me to book this? </div><div class="whatsapp-message user-message">User: what time in minutes does the journey take?</div><div class="whatsapp-message system-message">System: The trip takes a total of 51 minutes. Is there anything else you need?</div><div class="whatsapp-message user-message">User: I am also looking for places in the centre of the town to visit for architecture. Do you have any suggestions?</div><div class="whatsapp-message user-message">"System: There are several. The churches are very nice, I especially like Holy Trinity Church. Does that sound like what youre looking for?", "User: Sure that works. Whats the entrance fee?", System: There is no entrance fee at Holy Trinity Church.  Can I help you with anything else today?</div>
+        <h3>GT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "time": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "stay": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "not mentioned",
+      "destination": "not mentioned",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> Alright. What is your destination?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "time": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "stay": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "not mentioned",
+      "destination": "peterborough",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> I have TR7423 that leaves at 05:00 and arrives at 5:51. Would you like me to book this? 
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "time": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "stay": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "not mentioned",
+      "destination": "peterborough",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> The trip takes a total of 51 minutes. Is there anything else you need?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "time": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "stay": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "architecture",
+      "name": "not mentioned",
+      "area": "centre"
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "not mentioned",
+      "destination": "peterborough",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> There are several. The churches are very nice, I especially like Holy Trinity Church. Does that sound like what you're looking for?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "time": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "stay": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "architecture",
+      "name": "holy trinity church",
+      "area": "centre"
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "not mentioned",
+      "destination": "peterborough",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> There is no entrance fee at Holy Trinity Church.  Can I help you with anything else today?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "time": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "stay": "",
+      "day": "",
+      "people": ""
+    },
+    "semi": {
+      "name": "",
+      "area": "",
+      "parking": "",
+      "pricerange": "",
+      "stars": "",
+      "internet": "",
+      "type": ""
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "architecture",
+      "name": "holy trinity church",
+      "area": "centre"
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "not mentioned",
+      "destination": "peterborough",
+      "day": "sunday",
+      "arriveBy": "not mentioned",
+      "departure": "cambridge"
+    }
+  }
+}
+                <strong>Text:</strong> Have a lovely day! 
+            </div>
+        
+        <h3>GPT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "I found a train that leaves Cambridge on Sunday. Unfortunately, I don't have the specific departure time."
+                <strong>Text:</strong> {'train': {'day': 'sunday', 'departure': 'cambridge'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The next train from Cambridge to Peterborough on Sunday is at 05:06. The train will arrive in Peterborough at 05:56. The duration of the journey is 50 minutes and the price is 13.20 pounds. The reference for booking is 00001040."
+                <strong>Text:</strong> {'train': {'departure': 'Cambridge', 'day': 'sunday', 'destination': 'Peterborough'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The journey from Cambridge to Peterborough takes 50 minutes."
+                <strong>Text:</strong> {'train': {'day': 'sunday', 'departure': 'Cambridge', 'destination': 'Peterborough'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The trip from Cambridge to Peterborough takes a total of 51 minutes. Is there anything else you need?"
+                <strong>Text:</strong> {'attraction': {'type': 'museum', 'area': 'centre'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The entrance fee for Holy Trinity Church is free."
+                <strong>Text:</strong> {'attraction': {'type': 'museum', 'area': 'centre'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "Alright. What is your destination?"
+                <strong>Text:</strong> {'attraction': {'area': 'centre'}}
+            </div>
+        
+        <h3>LLAMA Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "I found a train that leaves Cambridge on Sunday. Unfortunately, I don't have the specific departure time."
+                <strong>Text:</strong> {'train': {'day': 'sunday', 'departure': 'cambridge'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The next train from Cambridge to Peterborough on Sunday is at 05:06. The train will arrive in Peterborough at 05:56. The duration of the journey is 50 minutes and the price is 13.20 pounds. The reference for booking is 00001040."
+                <strong>Text:</strong> {'train': {'departure': 'Cambridge', 'day': 'sunday', 'destination': 'Peterborough'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The journey from Cambridge to Peterborough takes 50 minutes."
+                <strong>Text:</strong> {'train': {'day': 'sunday', 'departure': 'Cambridge', 'destination': 'Peterborough'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The trip from Cambridge to Peterborough takes a total of 51 minutes. Is there anything else you need?"
+                <strong>Text:</strong> {'attraction': {'type': 'museum', 'area': 'centre'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The entrance fee for Holy Trinity Church is free."
+                <strong>Text:</strong> {'attraction': {'type': 'museum', 'area': 'centre'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "Alright. What is your destination?"
+                <strong>Text:</strong> {'attraction': {'area': 'centre'}}
+            </div>
+        
+    </div>
+    
+    <div class="dialogue-content" id="dialogue_9" style="display: none;">
+        <h3>History</h3>
+    <div class="whatsapp-message user-message">User: I need a place to stay that has free wifi. </div><div class="whatsapp-message system-message">System: There are 32 options in Cambridge, what price range are you looking for?</div><div class="whatsapp-message user-message">"User: Im looking for something in the cheap price range, but I need it to have a 4 star rating. I dont need any parking though.", System: Again I have many to choose from that meet those criteria. Would you like a suggestion?</div><div class="whatsapp-message user-message">User: Ok, yes, if you could suggest one that comes with free parking that would be great!</div><div class="whatsapp-message system-message">System: I will book it for you,is there anything else I can do for you ?</div><div class="whatsapp-message user-message">User: I also need a Vietnamese restaurant.</div><div class="whatsapp-message system-message">System: My apologies it appears that I forgot to book your lodging. I recommend Alexander Bed and Breakfast, would you like me to book it for you?</div><div class="whatsapp-message user-message">User: Oh yes, please do. I need it for 8 people and 5 nights, beginning friday</div><div class="whatsapp-message system-message">System: You are booked with the reference number E9100B48. I can help you with the Vietnamese restaurant now. Do you have an area in mind?</div><div class="whatsapp-message user-message">User: I just want the restaurant to be in the same price range as my hotel</div><div class="whatsapp-message system-message">System: There is one cheap vietnamese restaurant in town. It is thanh binh. Do you want to book?</div><div class="whatsapp-message user-message">User: No, just provide me with the address and area for that restaurant if you could</div><div class="whatsapp-message system-message">System: The restaurant is located at 17 Magdalene Street City Centre in the West.  Can I help you with anything else?</div><div class="whatsapp-message user-message">User: Yes, will you book me a taxi to the restaurant from the hotel, please</div><div class="whatsapp-message system-message">System: And what time would you like that taxi?</div><div class="whatsapp-message user-message">User: I would like to leave the hotel by 22:15.</div><div class="whatsapp-message system-message">System: Your taxi service was book with a red volkswagen. The contact number is 07797935179 in case you need to contact them.</div>
+        <h3>GT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "not mentioned",
+      "area": "not mentioned",
+      "parking": "not mentioned",
+      "pricerange": "not mentioned",
+      "stars": "not mentioned",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> There are 32 options in Cambridge, what price range are you looking for?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "not mentioned",
+      "area": "not mentioned",
+      "parking": "dontcare",
+      "pricerange": "cheap",
+      "stars": "4",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> Again I have many to choose from that meet those criteria. Would you like a suggestion?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "not mentioned",
+      "area": "not mentioned",
+      "parking": "yes",
+      "pricerange": "cheap",
+      "stars": "4",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> I will book it for you,is there anything else I can do for you ?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "vietnamese",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "stay": ""
+    },
+    "semi": {
+      "name": "not mentioned",
+      "area": "not mentioned",
+      "parking": "yes",
+      "pricerange": "cheap",
+      "stars": "4",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> My apologies it appears that I forgot to book your lodging. I recommend Alexander Bed and Breakfast, would you like me to book it for you?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "",
+      "pricerange": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [
+        {
+          "name": "alexander bed and breakfast",
+          "reference": "E9100B48"
+        }
+      ],
+      "people": "8",
+      "day": "friday",
+      "stay": "5"
+    },
+    "semi": {
+      "name": "alexander bed and breakfast",
+      "area": "not mentioned",
+      "parking": "yes",
+      "pricerange": "cheap",
+      "stars": "4",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> You are booked with the reference number E9100B48. I can help you with the Vietnamese restaurant now. Do you have an area in mind?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "vietnamese",
+      "pricerange": "cheap",
+      "name": "not mentioned",
+      "area": "not mentioned"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [
+        {
+          "name": "alexander bed and breakfast",
+          "reference": "E9100B48"
+        }
+      ],
+      "people": "8",
+      "day": "friday",
+      "stay": "5"
+    },
+    "semi": {
+      "name": "alexander bed and breakfast",
+      "area": "not mentioned",
+      "parking": "yes",
+      "pricerange": "cheap",
+      "stars": "4",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> There is one cheap vietnamese restaurant in town. It is thanh binh. Do you want to book?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "departure": "",
+      "arriveBy": ""
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "vietnamese",
+      "pricerange": "cheap",
+      "name": "thanh binh",
+      "area": "not mentioned"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [
+        {
+          "name": "alexander bed and breakfast",
+          "reference": "E9100B48"
+        }
+      ],
+      "people": "8",
+      "day": "friday",
+      "stay": "5"
+    },
+    "semi": {
+      "name": "alexander bed and breakfast",
+      "area": "not mentioned",
+      "parking": "yes",
+      "pricerange": "cheap",
+      "stars": "4",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> The restaurant is located at 17 Magdalene Street City Centre in the West.  Can I help you with anything else?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "leaveAt": "not mentioned",
+      "destination": "alexander bed and breakfast",
+      "departure": "thanh binh",
+      "arriveBy": "not mentioned"
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "vietnamese",
+      "pricerange": "cheap",
+      "name": "thanh binh",
+      "area": "not mentioned"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [
+        {
+          "name": "alexander bed and breakfast",
+          "reference": "E9100B48"
+        }
+      ],
+      "people": "8",
+      "day": "friday",
+      "stay": "5"
+    },
+    "semi": {
+      "name": "alexander bed and breakfast",
+      "area": "not mentioned",
+      "parking": "yes",
+      "pricerange": "cheap",
+      "stars": "4",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> And what time would you like that taxi?
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": [
+        {
+          "phone": "07797935179",
+          "type": "red volkswagen"
+        }
+      ]
+    },
+    "semi": {
+      "leaveAt": "22:15",
+      "destination": "alexander bed and breakfast",
+      "departure": "thanh binh",
+      "arriveBy": "not mentioned"
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "vietnamese",
+      "pricerange": "cheap",
+      "name": "thanh binh",
+      "area": "not mentioned"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [
+        {
+          "name": "alexander bed and breakfast",
+          "reference": "E9100B48"
+        }
+      ],
+      "people": "8",
+      "day": "friday",
+      "stay": "5"
+    },
+    "semi": {
+      "name": "alexander bed and breakfast",
+      "area": "not mentioned",
+      "parking": "yes",
+      "pricerange": "cheap",
+      "stars": "4",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> Your taxi service was book with a red volkswagen. The contact number is 07797935179 in case you need to contact them.
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> {
+  "taxi": {
+    "book": {
+      "booked": [
+        {
+          "phone": "07797935179",
+          "type": "red volkswagen"
+        }
+      ]
+    },
+    "semi": {
+      "leaveAt": "22:15",
+      "destination": "alexander bed and breakfast",
+      "departure": "thanh binh",
+      "arriveBy": "not mentioned"
+    }
+  },
+  "police": {
+    "book": {
+      "booked": []
+    },
+    "semi": {}
+  },
+  "restaurant": {
+    "book": {
+      "booked": [],
+      "people": "",
+      "day": "",
+      "time": ""
+    },
+    "semi": {
+      "food": "vietnamese",
+      "pricerange": "cheap",
+      "name": "thanh binh",
+      "area": "not mentioned"
+    }
+  },
+  "bus": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  },
+  "hospital": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "department": ""
+    }
+  },
+  "hotel": {
+    "book": {
+      "booked": [
+        {
+          "name": "alexander bed and breakfast",
+          "reference": "E9100B48"
+        }
+      ],
+      "people": "8",
+      "day": "friday",
+      "stay": "5"
+    },
+    "semi": {
+      "name": "alexander bed and breakfast",
+      "area": "not mentioned",
+      "parking": "yes",
+      "pricerange": "cheap",
+      "stars": "4",
+      "internet": "yes",
+      "type": "not mentioned"
+    }
+  },
+  "attraction": {
+    "book": {
+      "booked": []
+    },
+    "semi": {
+      "type": "",
+      "name": "",
+      "area": ""
+    }
+  },
+  "train": {
+    "book": {
+      "booked": [],
+      "people": ""
+    },
+    "semi": {
+      "leaveAt": "",
+      "destination": "",
+      "day": "",
+      "arriveBy": "",
+      "departure": ""
+    }
+  }
+}
+                <strong>Text:</strong> You are welcome enjoy your meal. Have a good evenening
+            </div>
+        
+        <h3>GPT Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "Sorry, I couldn't find any hotels that match your request for a place to stay with free wifi."
+                <strong>Text:</strong> {'hotel': {'internet': 'yes'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There are 32 options in Cambridge. What price range are you looking for?"
+                <strong>Text:</strong> {'hotel': {'pricerange': 'cheap', 'stars': '4', 'parking': 'no'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There are 32 options in Cambridge that have free wifi. What price range are you looking for?"
+                <strong>Text:</strong> {'hotel': {'internet': 'yes', 'parking': 'no', 'stars': '4'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There is a Vietnamese restaurant called El in the centre of Cambridge. The price range is moderate."
+                <strong>Text:</strong> {'restaurant': {'food': 'vietnamese'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I apologize for the confusion earlier. I have booked the Alexander Bed and Breakfast for you. Your reference number is [reference]. Is there anything else I can assist you with?"
+                <strong>Text:</strong> {'hotel': {'area': 'centre', 'internet': 'yes', 'parking': 'no', 'stars': '4', 'pricerange': 'cheap'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There are 32 options in Cambridge, what price range are you looking for?"
+                <strong>Text:</strong> {'restaurant': {'pricerange': 'cheap', 'name': 'Alexander'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The Vietnamese restaurant you are looking for is called Thanh Binh. It is located in the centre of town."
+                <strong>Text:</strong> {'restaurant': {'area': 'centre', 'pricerange': 'cheap', 'food': 'vietnamese', 'name': 'thanh'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I have booked your lodging at Alexander Bed and Breakfast in Cambridge for 8 people and 5 nights, starting from Friday. Your reference number is E9100B48. The Vietnamese restaurant I found in the same price range as your hotel is Thanh Binh. It is located at 17 Magdalene Street, City Centre in the West. Is there anything else I can assist you with?"
+                <strong>Text:</strong> {'taxi': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "Your taxi to the restaurant has been booked. The taxi will be a black Volkswagen and the phone number is 94555921534. The taxi will pick you up from the hotel at 22:15. Is there anything else I can assist you with?"
+                <strong>Text:</strong> {'taxi': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "Your taxi service was booked with a red Volkswagen. The contact number is 07797935179 in case you need to contact them. Is there anything else I can help you with?"
+                <strong>Text:</strong> {'taxi': {}}
+            </div>
+        
+        <h3>LLAMA Responses</h3>
+    
+            <div class="response">
+                <strong>Belief State:</strong> "Sorry, I couldn't find any hotels that match your request for a place to stay with free wifi."
+                <strong>Text:</strong> {'hotel': {'internet': 'yes'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There are 32 options in Cambridge. What price range are you looking for?"
+                <strong>Text:</strong> {'hotel': {'pricerange': 'cheap', 'stars': '4', 'parking': 'no'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There are 32 options in Cambridge that have free wifi. What price range are you looking for?"
+                <strong>Text:</strong> {'hotel': {'internet': 'yes', 'parking': 'no', 'stars': '4'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There is a Vietnamese restaurant called El in the centre of Cambridge. The price range is moderate."
+                <strong>Text:</strong> {'restaurant': {'food': 'vietnamese'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I apologize for the confusion earlier. I have booked the Alexander Bed and Breakfast for you. Your reference number is [reference]. Is there anything else I can assist you with?"
+                <strong>Text:</strong> {'hotel': {'area': 'centre', 'internet': 'yes', 'parking': 'no', 'stars': '4', 'pricerange': 'cheap'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "There are 32 options in Cambridge, what price range are you looking for?"
+                <strong>Text:</strong> {'restaurant': {'pricerange': 'cheap', 'name': 'Alexander'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "The Vietnamese restaurant you are looking for is called Thanh Binh. It is located in the centre of town."
+                <strong>Text:</strong> {'restaurant': {'area': 'centre', 'pricerange': 'cheap', 'food': 'vietnamese', 'name': 'thanh'}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "I have booked your lodging at Alexander Bed and Breakfast in Cambridge for 8 people and 5 nights, starting from Friday. Your reference number is E9100B48. The Vietnamese restaurant I found in the same price range as your hotel is Thanh Binh. It is located at 17 Magdalene Street, City Centre in the West. Is there anything else I can assist you with?"
+                <strong>Text:</strong> {'taxi': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "Your taxi to the restaurant has been booked. The taxi will be a black Volkswagen and the phone number is 94555921534. The taxi will pick you up from the hotel at 22:15. Is there anything else I can assist you with?"
+                <strong>Text:</strong> {'taxi': {}}
+            </div>
+        
+            <div class="response">
+                <strong>Belief State:</strong> "Your taxi service was booked with a red Volkswagen. The contact number is 07797935179 in case you need to contact them. Is there anything else I can help you with?"
+                <strong>Text:</strong> {'taxi': {}}
+            </div>
+        
+    </div>
+    
+    </div>
+</body>
+</html>

@@ -11,7 +11,7 @@ if __name__ == "__main__":
     BLUE = "\033[34m"
     dial_iterator = DialogueLoader().load_dialogue(True)
     max_dial = 10
-    file_path = "../key.json"
+    file_path = "key.json"
     with open(file_path, 'r') as file:
         oai_key = json.load(file)["api_key"]
     system = AssistantAgent(
@@ -65,10 +65,14 @@ if __name__ == "__main__":
                 prev_dial_history = current_dial_history + [f"{role}{utterance['text']}"]
                 system.resetDialogueHistory()
                 system.seedDialogueHistory(current_dial_history)
+                system_llama.resetDialogueHistory()
+                system_llama.seedDialogueHistory(current_dial_history)
                 print(f"Current_dial_history:{current_dial_history}")
                 response = system.gen_utterance(utterance["text"])
+                response_llama = system.gen_utterance(utterance["text"])
                 current_dial_history = prev_dial_history
                 print(f"{MAGENTA}System_response(gpt):{response}{RESET}")
+                print(f"{BLUE}System_response(LLAMA):{response}{RESET}")
                 print(f"{GREEN}GT_response: {gt_dial.woz_dialog[utterance_no+1]}{RESET}")
             else:
                 current_dial_history.append(f"{role}{utterance['text']}")
