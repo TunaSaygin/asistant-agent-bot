@@ -2,6 +2,7 @@ import sys
 sys.path.append('/content/asistant-agent-bot')
 from Dialog.utils import DialogueLoader
 from AsistantAgent import AssistantAgent
+from huggingface_hub import login
 import json
 if __name__ == "__main__":
     YELLOW = "\033[33m"
@@ -14,6 +15,9 @@ if __name__ == "__main__":
     file_path = "key.json"
     with open(file_path, 'r') as file:
         oai_key = json.load(file)["api_key"]
+    with open(file_path, 'r') as file:
+            hf_api_token = json.load(file)["hf_token"]
+            login(token=hf_api_token)
     system = AssistantAgent(
         cache_dir=".",
         oai_key=oai_key,
@@ -72,7 +76,7 @@ if __name__ == "__main__":
                 response_llama = system.gen_utterance(utterance["text"])
                 current_dial_history = prev_dial_history
                 print(f"{MAGENTA}System_response(gpt):{response}{RESET}")
-                print(f"{BLUE}System_response(LLAMA):{response}{RESET}")
+                print(f"{BLUE}System_response(LLAMA):{response_llama}{RESET}")
                 print(f"{GREEN}GT_response: {gt_dial.woz_dialog[utterance_no+1]}{RESET}")
             else:
                 current_dial_history.append(f"{role}{utterance['text']}")

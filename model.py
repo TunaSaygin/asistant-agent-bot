@@ -57,7 +57,7 @@ class FewShotLLAMAFactory:
         with open(file_path, 'r') as file:
             hf_api_token = json.load(file)["hf_token"]
             login(token=hf_api_token)
-    def _get_model(self, model_id,is_8bit = True):
+    def _get_model(self, model_id,is_8bit = False):
         if is_8bit:
             bnb_config = BitsAndBytesConfig(
                 load_in_8bit=True,
