@@ -73,7 +73,7 @@ if __name__ == "__main__":
                 system_llama.seedDialogueHistory(current_dial_history)
                 print(f"Current_dial_history:{current_dial_history}")
                 response = system.gen_utterance(utterance["text"])
-                response_llama = system.gen_utterance(utterance["text"])
+                response_llama = system_llama.gen_utterance(utterance["text"])
                 current_dial_history = prev_dial_history
                 print(f"{MAGENTA}System_response(gpt):{response}{RESET}")
                 print(f"{BLUE}System_response(LLAMA):{response_llama}{RESET}")

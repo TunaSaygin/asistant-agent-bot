@@ -16,7 +16,9 @@ from model import (
     FewShotAlpaca,
     ZeroShotAlpaca,
     FewShotPromptedLLAMA3,
-    FewShotLLAMAFactory
+    FewShotLLAMAFactory,
+    ZeroShotLLAMAFactory,
+    ZeroShotPromptedLLAMA3
     )
 logger = logging.getLogger(__name__)
 from utils import ExampleFormatter, ExampleRetriever, parse_state
@@ -82,7 +84,7 @@ class AssistantAgent:
         elif self.model_name == "meta-llama/Meta-Llama-3-8B-Instruct": 
             self.model_factory = FewShotLLAMAFactory()
             self.model = self.model_factory.build()
-            self.domain_model = self.model_factory.build()
+            self.domain_model = ZeroShotLLAMAFactory().build()
         else:
             tokenizer = AutoTokenizer.from_pretrained(self.model_name, cache_dir=self.cache_dir)
             model_w = AutoModelForSeq2SeqLM.from_pretrained(self.model_name,
