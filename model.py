@@ -80,7 +80,7 @@ class ZeroShotLLAMAFactory:
 class ZeroShotPromptedLLAMA3(SimplePromptedLLM):
     def __init__(self, model, tokenizer, type='seq2seq'):
         super().__init__(model, tokenizer, type)
-        self.MAX_LEN = 250
+        self.MAX_LEN = 100
         self.model = model
         self.tokenizer = tokenizer
     def _predict(self,text,**kwargs):

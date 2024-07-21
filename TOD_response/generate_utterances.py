@@ -33,7 +33,7 @@ if __name__ == "__main__":
         run_name="",
         use_gt_state=False,
         use_gt_domain=False,
-        use_zero_shot=True,
+        use_zero_shot=False,
         verbose=True,
         goal_data=None,
         debug=True,# Placeholder, adjust based on actual usage
@@ -53,7 +53,7 @@ if __name__ == "__main__":
         run_name="",
         use_gt_state=False,
         use_gt_domain=False,
-        use_zero_shot=True,
+        use_zero_shot=False,
         verbose=True,
         goal_data=None,
         debug=True,# Placeholder, adjust based on actual usage
