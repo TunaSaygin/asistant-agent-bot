@@ -3,6 +3,7 @@ from typing import Any, Dict
 import os
 from huggingface_hub import login
 import torch
+from peft import PeftModel, PeftConfig
 # import openai outdated
 from openai import OpenAI
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig, TrainingArguments
@@ -325,3 +326,97 @@ class ZeroShotAlpaca(SimplePromptedLLM):
         return self._predict(text)
 
 
+class FewShotFTLLAMAFactory:
+    def __init__(self,adapter_path) -> None:
+        self._authenticate
+        self.adapter_path = adapter_path
+    def _authenticate(self):
+        # Replace 'YOUR_HF_API_TOKEN' with your actual Hugging Face API token
+        file_path = "key.json"
+        with open(file_path, 'r') as file:
+            hf_api_token = json.load(file)["hf_token"]
+            login(token=hf_api_token)
+    def _get_model(self, model_id,is_8bit = False):
+        if is_8bit:
+            bnb_config = BitsAndBytesConfig(
+                load_in_8bit=True,
+                bnb_8bit_use_double_quant=True,
+                bnb_8bit_quant_type="nf4",
+                bnb_8bit_compute_dtype=torch.bfloat16
+            )
+        else:
+            bnb_config = BitsAndBytesConfig(
+                load_in_4bit=True,
+                bnb_4bit_use_double_quant=True,
+                bnb_4bit_quant_type="nf4",
+                bnb_4bit_compute_dtype=torch.bfloat16
+            )
+        model = AutoModelForCausalLM.from_pretrained(
+            model_id,
+            quantization_config = bnb_config,
+            device_map = "auto",
+            cache_dir = "cache"
+        )
+        adapter_config = PeftConfig.from_pretrained(self.adapter_path)
+
+        # Apply the adapter to the model
+        model = PeftModel.from_pretrained(model, self.adapter_path, config=adapter_config)
+        return model
+    def _get_tokenizer(self, model_id,stop_tokens=True):
+        tokenizer = AutoTokenizer.from_pretrained(model_id)
+        tokenizer.pad_token_id = (
+                tokenizer.eos_token_id
+            )    
+        return tokenizer
+    def build(self):
+        tokenizer = self._get_tokenizer(model_id="meta-llama/Meta-Llama-3-8B-Instruct")
+        model = self._get_model(model_id="meta-llama/Meta-Llama-3-8B-Instruct")
+        return FewShotPromptedLLAMA3(model,tokenizer)
+    
+
+class ZeroShotFTLLAMAFactory:
+    def __init__(self,adapter_path) -> None:
+        self._authenticate
+        self.adapter_path = adapter_path
+    def _authenticate(self):
+        # Replace 'YOUR_HF_API_TOKEN' with your actual Hugging Face API token
+        file_path = "key.json"
+        with open(file_path, 'r') as file:
+            hf_api_token = json.load(file)["hf_token"]
+            login(token=hf_api_token)
+    def _get_model(self, model_id,is_8bit = False):
+        if is_8bit:
+            bnb_config = BitsAndBytesConfig(
+                load_in_8bit=True,
+                bnb_8bit_use_double_quant=True,
+                bnb_8bit_quant_type="nf4",
+                bnb_8bit_compute_dtype=torch.bfloat16
+            )
+        else:
+            bnb_config = BitsAndBytesConfig(
+                load_in_4bit=True,
+                bnb_4bit_use_double_quant=True,
+                bnb_4bit_quant_type="nf4",
+                bnb_4bit_compute_dtype=torch.bfloat16
+            )
+        model = AutoModelForCausalLM.from_pretrained(
+            model_id,
+            quantization_config = bnb_config,
+            device_map = "auto",
+            cache_dir = "cache"
+        )
+        adapter_config = PeftConfig.from_pretrained(self.adapter_path)
+
+        # Apply the adapter to the model
+        model = PeftModel.from_pretrained(model, self.adapter_path, config=adapter_config)
+        return model
+    def _get_tokenizer(self, model_id,stop_tokens=True):
+        tokenizer = AutoTokenizer.from_pretrained(model_id)
+        tokenizer.pad_token_id = (
+                tokenizer.eos_token_id
+            )    
+        return tokenizer
+    def build(self):
+        tokenizer = self._get_tokenizer(model_id="meta-llama/Meta-Llama-3-8B-Instruct")
+        model = self._get_model(model_id="meta-llama/Meta-Llama-3-8B-Instruct")
+        return ZeroShotPromptedLLAMA3(model,tokenizer)
