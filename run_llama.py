@@ -144,6 +144,7 @@ if __name__ == "__main__":
     ilm_model = scorer.IncrementalLMScorer(model_name, cache_dir="cache")
     gold_states = load_gold_states(dataset="multiwoz")
     gold_turn_states = get_gold_turn_states(gold_states)
+    prev_dial_id = ""
     for it, turn in enumerate(data):
         if last_dial_id != turn["dialogue_id"]:
             last_dial_id = turn["dialogue_id"]
@@ -270,6 +271,8 @@ if __name__ == "__main__":
         TURN_ACC = turn_accuracy(result, gold_states)
         result[dialog_id][-1]["JGA"] = OVERALL_JGA
         result[dialog_id][-1]["ACC"] = TURN_ACC
+        if prev_dial_id == dialog_id and dialog_id is not None:
+            append_to_json_file("result1.json",result[dialog_id])
         report_table.add_data(
             f"{dialog_id}-{tn}", # id
             gt_domain, # gt_domain
