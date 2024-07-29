@@ -24,7 +24,7 @@ from prompts import PROMPT_STRATEGIES
 from slot_description import DOMAIN_SLOT_DESCRIPTION, DOMAIN_EXPECTED_SLOT, EXPECTED_DOMAIN
 from utils import ExampleRetriever, ExampleFormatter, parse_state_confidence_pair
 from mwzeval.utils import load_gold_states
-from mwzeval.JGA_metrics import overall_jga, turn_accuracy
+from mwzeval.JGA_metrics import overall_jga, turn_accuracy, get_conf_matrix
 
 import wandb
 def append_to_json_file(file_path, new_data):
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     parser.add_argument("--gamma", type=float, default=0) # hyperparameter for word confidence decay
     parser.add_argument("--model_name", type=str, default="meta-llama/Meta-Llama-3-8B-Instruct")
     parser.add_argument("--split", type=str, default="validation")
-    parser.add_argument("--result", type=str, default="results")
+    parser.add_argument("--result", type=str, default=".")
     parser.add_argument("--plot_result", type=str, default="plot_results_gpt4")
     parser.add_argument("--verbalized", type=int, default=0)
     parser.add_argument("--averaged_method", type=int, default=0)
@@ -265,12 +265,18 @@ if __name__ == "__main__":
             "slot_confidence": copy.deepcopy(slot_confidences),
             "value_confidence": copy.deepcopy(value_confidences),
             "pair_confidence": copy.deepcopy(pair_confidences),
-            "pair_minicons": copy.deepcopy(pair_minicons)
+            "pair_minicons": copy.deepcopy(pair_minicons),
+            "ground_truth": gold_states[dialog_id][tn],
+            # "conf_matrix": get_conf_matrix(),
+            "history":history
         })
+
         OVERALL_JGA = overall_jga(result, gold_states)
         TURN_ACC = turn_accuracy(result, gold_states)
         result[dialog_id][-1]["JGA"] = OVERALL_JGA
         result[dialog_id][-1]["ACC"] = TURN_ACC
+        print(f"overall_jga: {OVERALL_JGA}")
+        print(f"TURN_ACC:{TURN_ACC}")
         if prev_dial_id == dialog_id and dialog_id is not None:
             append_to_json_file("result1.json",result[dialog_id])
         report_table.add_data(
