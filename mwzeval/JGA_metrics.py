@@ -169,13 +169,15 @@ def turn_accuracy(input_data, reference_states):
     turn_acc = turn_match / num_turn
     return {"turn_accuracy": turn_acc}
 
-def get_conf_matrix(pred, ground_truth, turn ,fuzzy_ratio=95):
+def get_conf_matrix(pred, ground_truth ,fuzzy_ratio=95):
         # tp ... those mentioned in both and matching
         # tn ... those not mentioned in both (this inflates results for slot acc., thus reporting F1)
         # fn ... those not mentioned in hyp but mentioned in ref
         # fp ... those mentioned in hyp but not mentioned in ref OR mentioned in hyp but not matching
-        hyp = flatten(pred["parsed_state"])
-        ref = flatten(ground_truth[""])
+        print(f"predicted: {pred}")
+        print(f"GT:{ground_truth}")
+        hyp = flatten(pred)
+        ref = flatten(ground_truth)
         tp, fp, fn = 0, 0, 0
         for slot, value in hyp.items():
             if slot in ref and fuzz.partial_ratio(value, ref[slot]) > fuzzy_ratio:

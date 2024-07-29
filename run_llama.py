@@ -16,14 +16,14 @@ import torch.nn.functional as F
 import os
 
 # import files
-from loaders import load_mwoz
+from loader_llama import load_mwoz
 from confidence_minicons import get_confidence, minicons_confidence
 from evaluation_minicons import get_gold_turn_states
 from model_llama import get_model, get_tokenizer, response
 from prompts import PROMPT_STRATEGIES
 from slot_description import DOMAIN_SLOT_DESCRIPTION, DOMAIN_EXPECTED_SLOT, EXPECTED_DOMAIN
-from utils import ExampleRetriever, ExampleFormatter, parse_state_confidence_pair
-from mwzeval.utils import load_gold_states
+from utils_llama import ExampleRetriever, ExampleFormatter, parse_state_confidence_pair
+from mwzeval.utils_llama import load_gold_states
 from mwzeval.JGA_metrics import overall_jga, turn_accuracy, get_conf_matrix
 
 import wandb
@@ -266,8 +266,8 @@ if __name__ == "__main__":
             "value_confidence": copy.deepcopy(value_confidences),
             "pair_confidence": copy.deepcopy(pair_confidences),
             "pair_minicons": copy.deepcopy(pair_minicons),
-            "ground_truth": gold_states[dialog_id][tn],
-            # "conf_matrix": get_conf_matrix(),
+            "ground_truth": turn['metadata']['parsed_state'],
+            "conf_matrix": get_conf_matrix({gt_domain:slot_values}, turn['metadata']['parsed_state']),
             "history":history
         })
 
