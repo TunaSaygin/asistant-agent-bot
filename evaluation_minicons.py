@@ -1,11 +1,10 @@
 import statistics
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, auc
-from mwzeval.metrics import *
-from mwzeval.utils import load_gold_states
+from mwzeval.metrics_llama import *
+from mwzeval.utils_llama import load_gold_states
 import numpy as np
 import os.path as osp
-import
 
 def plot_empirical(correct_scores, incorrect_scores, n_bins, PLOT_RESULT_PATH="", input_file_name=""):
     bins = np.linspace(0, 1, n_bins + 1)

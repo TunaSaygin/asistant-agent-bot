@@ -185,13 +185,16 @@ def get_conf_matrix(pred, ground_truth ,fuzzy_ratio=95):
             else:
                 fp += 1
         for slot, value in ref.items():
-            if slot not in hyp or fuzz.partial_ratio(hyp[slot], value) <= fuzzy_ratio:
+            if slot not in hyp:
                 #if slot[1].startswith('book'):
                 #    continue
                 if value in ['', '?', 'dontcare']:
                     continue
                 fn += 1
-        return {"tp":tp, "fp": fp,"fn": fn, "precision":tp/fp, "recall":tp/fn}
+         # Calculate precision and recall, avoiding division by zero
+        precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+        recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+        return {"tp":tp, "fp": fp,"fn": fn, "precision":precision, "recall":recall}
             
             
             

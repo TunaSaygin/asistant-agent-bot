@@ -53,9 +53,11 @@ def load_mwoz(database_path, context_size, split='train', start_idx=0, dials_tot
             last_state = new_state
 
             database_results = {domain: len(database.query(domain, domain_state)) for domain, domain_state in new_state.items()}
-            curr_slots_values = state[0]['slots_values']
-            curr_state_dict = {k: v[0] for k, v in zip(curr_slots_values['slots_values_name'], curr_slots_values['slots_values_list'])}
-
+            if len(state)>0:
+                curr_slots_values = state[0]['slots_values']
+                curr_state_dict = {k: v[0] for k, v in zip(curr_slots_values['slots_values_name'], curr_slots_values['slots_values_list'])}
+            else:
+                continue
             curr_state = defaultdict(dict)
             for sl, val in curr_state_dict.items():
                 domain, name = sl.split('-')

@@ -32,6 +32,20 @@ def parse_state(state: str) -> Dict[str, str]:
     out_state = {sv[0]: ":".join(sv[1:]).strip("'\" ") for sv in slotvals if sv[1] not in ['', 'unknown', 'dontcare', 'none', 'null', '__null__', '_null_', "_none_", "_dontcare_", "_unknown_", "na", "?", "??", "???"]}
     return sanitize(out_state)
 
+def parse_domain_slot_set():
+    slot_set = {}
+    with open("ontology.json","r") as f:
+        slot_set = json.load(f).keys()
+    domain_slot_dict = {}
+
+    for item in slot_set:
+        domain_name, slot_name = item.split('-')
+        if domain_name not in domain_slot_dict:
+            domain_slot_dict[domain_name] = []
+        domain_slot_dict[domain_name].append(slot_name)
+
+    return domain_slot_dict
+
 def parse_multi_state(state: str) -> Dict[str, Any]:
     patterns = [
         r'"state":\s*{(.*?)}',
@@ -203,3 +217,6 @@ def parse_response(response, filled_response_prompt):
     response = response.split("Output: ")[1]
     response = response.split("Customer:")[0].split("User:")[0].replace("Assistant:", "").strip()
     return response
+
+if __name__ == "__main__":
+    print(parse_domain_slot_set())

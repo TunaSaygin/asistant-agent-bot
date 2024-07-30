@@ -18,11 +18,11 @@ import os
 # import files
 from loader_llama import load_mwoz
 from confidence_minicons import get_confidence, minicons_confidence
-from evaluation_minicons import get_gold_turn_states
+from evaluation_minicons import get_gold_turn_states, plot_distribution
 from model_llama import get_model, get_tokenizer, response
 from prompts import PROMPT_STRATEGIES
 from slot_description import DOMAIN_SLOT_DESCRIPTION, DOMAIN_EXPECTED_SLOT, EXPECTED_DOMAIN
-from utils_llama import ExampleRetriever, ExampleFormatter, parse_state_confidence_pair
+from utils_llama import ExampleRetriever, ExampleFormatter, parse_state_confidence_pair, parse_domain_slot_set
 from mwzeval.utils_llama import load_gold_states
 from mwzeval.JGA_metrics import overall_jga, turn_accuracy, get_conf_matrix
 
@@ -139,7 +139,7 @@ if __name__ == "__main__":
     history = []
     total_state = {}
     result = {}
-
+    slot_sets = parse_domain_slot_set()
     model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
     ilm_model = scorer.IncrementalLMScorer(model_name, cache_dir="cache")
     gold_states = load_gold_states(dataset="multiwoz")
@@ -292,7 +292,8 @@ if __name__ == "__main__":
         )
 
         history += [f"Assistant: {gold_response}"] # assistnat response
-
+    if args.dials_total == 1:
+            append_to_json_file("result1.json",result[dialog_id])
     input_file_name = input_file_name.replace("/", "-")
     wandb.log({"examples": report_table})
 
