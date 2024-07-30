@@ -175,7 +175,7 @@ def get_conf_matrix(pred, ground_truth ,fuzzy_ratio=95):
         # fn ... those not mentioned in hyp but mentioned in ref
         # fp ... those mentioned in hyp but not mentioned in ref OR mentioned in hyp but not matching
         print(f"predicted: {pred}")
-        print(f"GT:{ground_truth}")
+        print(f"GT:{str(ground_truth)}")
         hyp = flatten(pred)
         ref = flatten(ground_truth)
         tp, fp, fn = 0, 0, 0

@@ -113,7 +113,6 @@ if __name__ == "__main__":
     # report_table = wandb.Table(columns=['id', 'context', 'gt_domain', 'turn_state', 'total_state', 'slot_confidence', 'value_confidence', 'pair_confidence'])
     report_table = wandb.Table(columns=['id', 'gt_domain', 'turn_state', 'total_state', 'pair_verbalized', 'slot_confidence', 'value_confidence', 'pair_confidence', 'pair_minicons'])
 
-
     model = get_model(model_id=args.model_name, is_8bit=True)
     tokenizer = get_tokenizer(model_id=args.model_name)
     streamer = TextIteratorStreamer(
@@ -121,8 +120,10 @@ if __name__ == "__main__":
         timeout = 10, 
         skip_prompt = True, 
         skip_special_tokens = True)
-
+        
     data = load_mwoz(database_path=args.database, context_size=args.context_size, split=args.split, shuffle=False, start_idx=args.start_idx, dials_total=args.dials_total)
+    if args.dials_total <=0:
+        data = load_mwoz(database_path=args.database, context_size=args.context_size, split=args.split, shuffle=False, start_idx=args.start_idx, dials_total=None)
     with open(args.faiss, 'rb') as file:
         faiss_vs = pickle.load(file)
     with open(args.ontology, 'r') as file:
@@ -268,7 +269,9 @@ if __name__ == "__main__":
             "pair_minicons": copy.deepcopy(pair_minicons),
             "ground_truth": turn['metadata']['parsed_state'],
             "conf_matrix": get_conf_matrix({gt_domain:slot_values}, turn['metadata']['parsed_state']),
-            "history":history
+            "history":history,
+            "gold_state": gold_states,
+            "gold_turn_states": gold_turn_states,
         })
 
         OVERALL_JGA = overall_jga(result, gold_states)
