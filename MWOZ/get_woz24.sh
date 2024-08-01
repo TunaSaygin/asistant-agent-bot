@@ -1,5 +1,5 @@
 #!/bin/bash
-wget https://github.com/smartyfh/MultiWOZ2.4.git -O MultiWOZ_2.4.zip
+git clone https://github.com/smartyfh/MultiWOZ2.4.git
 
-
-unzip MultiWOZ_2.4.zip
+cd MultiWOZ2.4
+python MultiWOZ2.4/create_data.py 
