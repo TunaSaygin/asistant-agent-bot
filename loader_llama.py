@@ -5,7 +5,7 @@ from typing import Dict, List
 import numpy as np
 from datasets import load_dataset
 from database import MultiWOZDatabase
-from model import *
+from model_llama import *
 
 ALL_MWOZ22_DOMAINS = ["restaurant", "hotel", "attraction", "train", "taxi", "hospital", "bus"]
 
@@ -142,19 +142,3 @@ history:
 Choose the level of hardness from (Easy/Medium/Hard).
 Answer:
 """
-
-def gt_confidence(model, tokenizer, streamer, utterance: str, context: str) -> int:
-    filled_confidence_prompt = confidence_prompt.format(utterance, context)
-    confidence_input = tokenizer(filled_confidence_prompt, return_tensors="pt").input_ids.cuda()
-    outputs = response(model, "meta-llama/Meta-Llama-3-8B-Instruct", streamer, confidence_input, temperature=1)
-    generated_text = tokenizer.decode(outputs['sequences'][0], skip_special_tokens=True)
-    confidence = generated_text.split("Answer:")[1].strip().lower()
-
-    if "easy" in confidence:
-        return random.uniform(0.9, 1)
-    elif "medium" in confidence:
-        return random.uniform(0.8, 0.9)
-    elif "hard" in confidence:
-        return random.uniform(0.7, 0.8)
-    else:
-        return 0.5
