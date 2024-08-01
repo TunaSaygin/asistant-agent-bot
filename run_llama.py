@@ -6,7 +6,7 @@ import json
 import copy
 import argparse
 import time
-from minicons import cwe, scorer
+# from minicons import cwe, scorer
 import json
 import statistics
 from torch.utils.data import DataLoader
@@ -17,7 +17,7 @@ import os
 
 # import files
 from loader_llama import load_mwoz
-from confidence_minicons import get_confidence, minicons_confidence
+# from confidence_minicons import get_confidence, minicons_confidence
 from evaluation_minicons import get_gold_turn_states, plot_distribution
 from model_llama import get_model, get_tokenizer, response
 from prompts import PROMPT_STRATEGIES
@@ -142,7 +142,7 @@ if __name__ == "__main__":
     result = {}
     slot_sets = parse_domain_slot_set()
     model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
-    ilm_model = scorer.IncrementalLMScorer(model_name, cache_dir="cache")
+    # ilm_model = scorer.IncrementalLMScorer(model_name, cache_dir="cache")
     gold_states = load_gold_states(dataset="multiwoz")
     gold_turn_states = get_gold_turn_states(gold_states)
     prev_dial_id = ""
@@ -242,15 +242,15 @@ if __name__ == "__main__":
 
         if not args.verbalized:
             confidence = 1
-        slot_confidences, value_confidences, pair_confidences = get_confidence(tokenizer, state_input, outputs, slot_values, confidence, args.gamma, args.averaged_method)
+        # slot_confidences, value_confidences, pair_confidences = get_confidence(tokenizer, state_input, outputs, slot_values, confidence, args.gamma, args.averaged_method)
         print("opened (softmax):")
-        print(f"slot_confidences: {slot_confidences}")
-        print(f"value_confidences: {value_confidences}")
-        print(f"pair_confidences: {pair_confidences}")
+        # print(f"slot_confidences: {slot_confidences}")
+        # print(f"value_confidences: {value_confidences}")
+        # print(f"pair_confidences: {pair_confidences}")
         
-        pair_minicons = minicons_confidence(ilm_model, slot_values, history)
-        print("opened (minicons):")
-        print(f"pair_minicons: {pair_minicons}")
+        # pair_minicons = minicons_confidence(ilm_model, slot_values, history)
+        # print("opened (minicons):")
+        # print(f"pair_minicons: {pair_minicons}")
         
         if gt_domain not in total_state.keys() and slot_values:
             total_state[gt_domain] = {}
@@ -284,10 +284,10 @@ if __name__ == "__main__":
             json.dumps(slot_values), # turn_state
             json.dumps(total_state), # total_state
             json.dumps(pair_verbalized),
-            json.dumps(slot_confidences), # slot_confidence
-            json.dumps(value_confidences), # value_confidence
-            json.dumps(pair_confidences), # pair_confidence
-            json.dumps(pair_minicons)
+            # json.dumps(slot_confidences), # slot_confidence
+            # json.dumps(value_confidences), # value_confidence
+            # json.dumps(pair_confidences), # pair_confidence
+            # json.dumps(pair_minicons)
         )
 
         history += [f"Assistant: {gold_response}"] # assistnat response

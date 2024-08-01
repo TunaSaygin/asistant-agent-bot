@@ -40,8 +40,8 @@ system
 Capture entity values from the LAST UTTERANCE of the conversation.
 FOCUS ONLY ON THE VALUES MENTIONED IN THE LAST UTTERANCE.
 Format the output as a valid JSON object for each entity-value pair.
-Format: {{"state": {{"_entity_":"_value_"}}, "confidence": "X"}}
-Where X is the Confidence of the answer.
+Format: {{"state": {{"_entity_":"_value_"}}, "reasoning": "X"}}
+Where X is the reasoning of the answer.
 
 Fill the actual entity value into the placeholder encapsulated with underscores.
 Put "```" as EOS token at the end of response.
@@ -52,16 +52,16 @@ If not specified, do not respond to that slot-value.
 --------------------
 {}
 --------------------
-MAKE SURE TO SEPARATE EACH SLOT-VALUE PAIR, AND ALONG WITH EACH OF THEIR CONFIDENCE (0-1).
+MAKE SURE TO SEPARATE EACH SLOT-VALUE PAIR, AND ALONG WITH EACH OF THEIR REASONING.
 Format the output as:
 ```json
 [
-    {{"state": {{"_entity1_":"_value1_"}}, "confidence": "_X1_"}}, 
-    {{"state": {{"_entity2_":"_value2_"}}, "confidence": "_X2_"}},
-    {{"state": {{"_entity3_":"_value3_"}}, "confidence": "_X3_"}},
+    {{"state": {{"_entity1_":"_value1_"}}, "reasoning": "_X1_"}}, 
+    {{"state": {{"_entity2_":"_value2_"}}, "reasoning": "_X2_"}},
+    {{"state": {{"_entity3_":"_value3_"}}, "reasoning": "_X3_"}},
 ]```
 
-Now complete the following example, AND PROVIDE CONFIDENCE THAT IT'S CORRECT:
+Now complete the following example, AND PROVIDE REASONING THAT IT'S CORRECT:
 input: 
 user
 {}
@@ -79,8 +79,8 @@ system
 Capture entity values from the LAST UTTERANCE of the conversation.
 FOCUS ONLY ON THE VALUES MENTIONED IN THE LAST UTTERANCE.
 Format the output as a valid JSON object for each entity-value pair.
-Format: {{"state": {{"_entity_":"_value_"}}, "confidence": "X"}}
-Where X is the Confidence of the answer.
+Format: {{"state": {{"_entity_":"_value_"}}, "reasoning": "X"}}
+Where X is the Reasoning of the answer.
 
 Fill the actual entity value into the placeholder encapsulated with underscores.
 Put "```" as EOS token at the end of response.
@@ -89,16 +89,16 @@ Values that should be captured are:
 Do not capture any other values!
 If not specified, do not respond to that slot-value.
 
-MAKE SURE TO SEPARATE EACH SLOT-VALUE PAIR, AND ALONG WITH EACH OF THEIR CONFIDENCE (0-1).
+MAKE SURE TO SEPARATE EACH SLOT-VALUE PAIR, AND ALONG WITH EACH OF THEIR REASONING.
 Format the output as:
 ```json
 [
-    {{"state": {{"_entity1_":"_value1_"}}, "confidence": "_X1_"}}, 
-    {{"state": {{"_entity2_":"_value2_"}}, "confidence": "_X2_"}},
-    {{"state": {{"_entity3_":"_value3_"}}, "confidence": "_X3_"}},
+    {{"state": {{"_entity1_":"_value1_"}}, "reasoning": "_X1_"}}, 
+    {{"state": {{"_entity2_":"_value2_"}}, "reasoning": "_X2_"}},
+    {{"state": {{"_entity3_":"_value3_"}}, "reasoning": "_X3_"}},
 ]```
 
-Now complete the following example, AND PROVIDE CONFIDENCE THAT IT'S CORRECT:
+Now complete the following example, AND PROVIDE REASONING THAT IT'S CORRECT:
 input: 
 user
 {}
@@ -117,7 +117,7 @@ class TopKPrompt:
 Capture entity values from the LAST UTTERANCE of the conversation.
 FOCUS ONLY ON THE VALUES MENTIONED IN THE LAST UTTERANCE.
 Format the output as a valid JSON object for each entity-value pair.
-Format: {{"state": {{"entity":"value", "entity":"value"}}, "confidence": "X"}}
+Format: {{"state": {{"entity":"value", "entity":"value"}}, "reasoning": "X"}}
 Put "```" as EOS token at the end of response.
 {}
 Do not capture any other values!
@@ -125,16 +125,16 @@ IF NOT SPECIFIED, LEAVE THE VALUE EMPTY.
 --------------------
 {}{}
 --------------------
-Provide 3 different possible entity values based on the last utterance, along with their confidence (0-1). Format the output as:
+Provide 3 different possible entity values based on the last utterance, along with their reasoning. Format the output as:
 ```json
 [
-    {{"state": {{"entity1":"value1", "entity2":"value2", ...}}, "confidence": "X"}},
-    {{"state": {{"entity1":"value3", "entity2":"value4", ...}}, "confidence": "Y"}},
-    {{"state": {{"entity1":"value5", "entity2":"value6", ...}}, "confidence": "Z"}}
+    {{"state": {{"entity1":"value1", "entity2":"value2", ...}}, "reasoning": "X"}},
+    {{"state": {{"entity1":"value3", "entity2":"value4", ...}}, "reasoning": "Y"}},
+    {{"state": {{"entity1":"value5", "entity2":"value6", ...}}, "reasoning": "Z"}}
 ]```
-Where X, Y, and Z are the Confidence of each possible answer.
+Where X, Y, and Z are the Reasoning of each possible answer.
 
-Now complete the following example, AND PROVIDE 3 DIFFERENT GUESSES AND CONFIDENCE THAT IT'S CORRECT:
+Now complete the following example, AND PROVIDE 3 DIFFERENT GUESSES AND REASONING THAT IT'S CORRECT:
 input: {}  
 Customer: {}
 
@@ -149,22 +149,22 @@ Output: ```json[
 Capture entity values from the LAST UTTERANCE of the conversation.
 FOCUS ONLY ON THE VALUES MENTIONED IN THE LAST UTTERANCE.
 Format the output as a valid JSON object for each entity-value pair.
-Format: {{"state": {{"entity":"value", "entity":"value"}}, "confidence": "X"}}
+Format: {{"state": {{"entity":"value", "entity":"value"}}, "reasoning": "X"}}
 Put "```" as EOS token at the end of response.
 {}
 Do not capture any other values!
 IF NOT SPECIFIED, LEAVE THE VALUE EMPTY.
 
-Provide 3 different possible entity values based on the last utterance, along with their confidence (0-1). Format the output as:
+Provide 3 different possible entity values based on the last utterance, along with their reasoning. Format the output as:
 ```json
 [
-    {{"state": {{"entity1":"value1", "entity2":"value2", ...}}, "confidence": "X"}},
-    {{"state": {{"entity1":"value3", "entity2":"value4", ...}}, "confidence": "Y"}},
-    {{"state": {{"entity1":"value5", "entity2":"value6", ...}}, "confidence": "Z"}}
+    {{"state": {{"entity1":"value1", "entity2":"value2", ...}}, "reasoning": "X"}},
+    {{"state": {{"entity1":"value3", "entity2":"value4", ...}}, "reasoning": "Y"}},
+    {{"state": {{"entity1":"value5", "entity2":"value6", ...}}, "reasoning": "Z"}}
 ]```
-Where X, Y, and Z are the Confidence of each possible answer.
+Where X, Y, and Z are the Reasoning of each possible answer.
 
-Now complete the following example, AND PROVIDE 3 DIFFERENT GUESSES AND CONFIDENCE THAT IT'S CORRECT:
+Now complete the following example, AND PROVIDE 3 DIFFERENT GUESSES AND REASONING OF WHY THAT IT'S CORRECT:
 input: {}  
 Customer: {}
 

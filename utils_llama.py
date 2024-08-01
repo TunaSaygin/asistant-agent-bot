@@ -72,7 +72,7 @@ def parse_multi_state(state: str) -> Dict[str, Any]:
 
 def parse_state_confidence_pair(state: str) -> Dict[str, Any]:
     patterns = [
-        r'{"state":\s*{(.*?)},\s*"confidence":\s*"(.*?)"}',
+        r'{"state":\s*{(.*?)},\s*"reasoning":\s*"(.*?)"}',
         r'{"state":\s*{(.*?)}(.*?)}',
         r'{"state:\s*"{(.*?)}(.*?)}'
     ]
