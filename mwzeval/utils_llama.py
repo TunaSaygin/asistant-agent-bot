@@ -122,7 +122,7 @@ def load_gold_states(dataset):
     if dataset == "multiwoz24":
         data_path = os.path.join(dir_path, "data", "gold_states_24.json")
     else:
-        data_path = os.path.join(dir_path, "data", "gold_states.json")
+        data_path = os.path.join(dir_path, "data", "gold_states_fixed.json")
     if os.path.exists(data_path):
         with open(data_path) as f:
             return json.load(f)
