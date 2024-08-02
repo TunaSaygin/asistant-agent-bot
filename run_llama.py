@@ -266,8 +266,7 @@ if __name__ == "__main__":
             "ground_truth": turn['metadata']['parsed_state'],
             "conf_matrix": get_conf_matrix({gt_domain:slot_values}, turn['metadata']['parsed_state']),
             "history":history,
-            "gold_state": gold_states,
-            "gold_turn_states": gold_turn_states,
+            "gold_state": gold_states[dialog_id][tn-1],
         })
         print(result[dialog_id][-1])
         OVERALL_JGA = overall_jga(result, gold_states)
