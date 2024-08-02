@@ -85,12 +85,12 @@ def parse_state_confidence_pair(state: str) -> Dict[str, Any]:
     for match in matches:
         try:
             state_dict = match[0]
-            confidence = float(match[1]) if len(match) >= 1 else 0
+            # confidence = float(match[1]) if len(match) >= 1 else 0
             slot_value = parse_state(state_dict)
             slot_values.update(slot_value)
             for slt, val in slot_value.items():
                 key_name = f"{slt}_{val}"
-                pair_confidences[key_name] = confidence
+                # pair_confidences[key_name] = confidence
         except Exception as e:
             print(f"Error: {e}")
             continue

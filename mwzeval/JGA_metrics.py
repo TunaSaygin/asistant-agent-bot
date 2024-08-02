@@ -59,8 +59,8 @@ def overall_jga(input_data, reference_states):
     num_turns = 0
     for dialog_id in input_data:
         for i, turn in enumerate(input_data[dialog_id]):
-            # print(f"{dialog_id}-{i}")
-            # print(turn.keys())
+            print(f"{dialog_id}-{i}")
+            print(turn.keys())
             ref = flatten(reference_states[dialog_id][i])
             hyp = flatten(turn["total_state"])
             # print(f"ref: {ref}")

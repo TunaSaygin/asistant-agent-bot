@@ -269,7 +269,7 @@ if __name__ == "__main__":
             "gold_state": gold_states,
             "gold_turn_states": gold_turn_states,
         })
-
+        print(result[dialog_id][-1])
         OVERALL_JGA = overall_jga(result, gold_states)
         TURN_ACC = turn_accuracy(result, gold_states)
         result[dialog_id][-1]["JGA"] = OVERALL_JGA
@@ -278,24 +278,25 @@ if __name__ == "__main__":
         print(f"TURN_ACC:{TURN_ACC}")
         if prev_dial_id == dialog_id and dialog_id is not None:
             append_to_json_file("result1.json",result[dialog_id])
-        report_table.add_data(
-            f"{dialog_id}-{tn}", # id
-            gt_domain, # gt_domain
-            json.dumps(slot_values), # turn_state
-            json.dumps(total_state), # total_state
-            json.dumps(pair_verbalized),
-            # json.dumps(slot_confidences), # slot_confidence
-            # json.dumps(value_confidences), # value_confidence
-            # json.dumps(pair_confidences), # pair_confidence
-            # json.dumps(pair_minicons)
-        )
+        # report_table.add_data(
+        #     f"{dialog_id}-{tn}", # id
+        #     gt_domain, # gt_domain
+        #     json.dumps(slot_values), # turn_state
+        #     json.dumps(total_state), # total_state
+        #     json.dumps(pair_verbalized),
+        #     # json.dumps(slot_confidences), # slot_confidence
+        #     # json.dumps(value_confidences), # value_confidence
+        #     # json.dumps(pair_confidences), # pair_confidence
+        #     # json.dumps(pair_minicons)
+        # )
 
         history += [f"Assistant: {gold_response}"] # assistnat response
     if args.dials_total == 1:
             append_to_json_file("result1.json",result[dialog_id])
     input_file_name = input_file_name.replace("/", "-")
     wandb.log({"examples": report_table})
-
+    with open("final_result", "w") as file:
+        json.dump(result, file)
     file_name = os.path.join(args.result, f"{input_file_name}.json")
     with open(file_name, "w") as file:
         json.dump(result, file)
