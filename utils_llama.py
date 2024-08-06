@@ -29,7 +29,7 @@ def parse_state(state: str) -> Dict[str, str]:
     pattern = r'"([a-zA-Z0-9 _-]+)"\s*:\s*"(.*?)"'
     slotvals = re.findall(pattern, state)
 
-    out_state = {sv[0]: ":".join(sv[1:]).strip("'\" ") for sv in slotvals if sv[1] not in ['', 'unknown', 'dontcare', 'none', 'null', '__null__', '_null_', "_none_", "_dontcare_", "_unknown_", "na", "?", "??", "???"]}
+    out_state = {sv[0]: ":".join(sv[1:]).strip("'\" ") for sv in slotvals if sv[1] not in ['', 'unknown', 'dontcare', 'none', 'null', '__null__', '_null_', "_none_", "_dontcare_", "_unknown_", "na", "?", "??", "???","x","undetermined","default"]}
     return sanitize(out_state)
 
 def parse_domain_slot_set():

@@ -52,7 +52,7 @@ If not specified, do not respond to that slot-value.
 --------------------
 {}
 --------------------
-MAKE SURE TO SEPARATE EACH SLOT-VALUE PAIR, AND ALONG WITH EACH OF THEIR REASONING.
+MAKE SURE TO SEPARATE EACH SLOT-VALUE PAIR, AND ALONG WITH EACH OF THEIR REASONING. IF ENTITY NOT SPECIFIED RESPOND WITH null RATHER THAN ASSUME.
 Format the output as:
 ```json
 [
@@ -89,7 +89,7 @@ Values that should be captured are:
 Do not capture any other values!
 If not specified, do not respond to that slot-value.
 
-MAKE SURE TO SEPARATE EACH SLOT-VALUE PAIR, AND ALONG WITH EACH OF THEIR REASONING.
+MAKE SURE TO SEPARATE EACH SLOT-VALUE PAIR, AND ALONG WITH EACH OF THEIR REASONING. IF ENTITY NOT SPECIFIED RESPOND WITH null RATHER THAN ASSUME.
 Format the output as:
 ```json
 [
@@ -121,7 +121,7 @@ Format: {{"state": {{"entity":"value", "entity":"value"}}, "reasoning": "X"}}
 Put "```" as EOS token at the end of response.
 {}
 Do not capture any other values!
-IF NOT SPECIFIED, LEAVE THE VALUE EMPTY.
+IF NOT SPECIFIED, LEAVE THE VALUE EMPTY. IF ENTITY NOT SPECIFIED RESPOND WITH null RATHER THAN ASSUME.
 --------------------
 {}{}
 --------------------
@@ -153,7 +153,7 @@ Format: {{"state": {{"entity":"value", "entity":"value"}}, "reasoning": "X"}}
 Put "```" as EOS token at the end of response.
 {}
 Do not capture any other values!
-IF NOT SPECIFIED, LEAVE THE VALUE EMPTY.
+IF NOT SPECIFIED, LEAVE THE VALUE EMPTY. IF ENTITY NOT SPECIFIED RESPOND WITH null RATHER THAN ASSUME.
 
 Provide 3 different possible entity values based on the last utterance, along with their reasoning. Format the output as:
 ```json

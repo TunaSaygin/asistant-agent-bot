@@ -27,34 +27,6 @@ from mwzeval.utils_llama import load_gold_states
 from mwzeval.JGA_metrics import overall_jga, turn_accuracy, get_conf_matrix
 
 import wandb
-def append_to_json_file(file_path, new_data):
-    """
-        Appends a new JSON object to a JSON array in a file.
-
-        Parameters:
-            file_path (str): The path to the JSON file.
-            new_data (dict): The new JSON object to append.
-
-            Returns:
-                None
-    """
-    # Step 1: Read the existing JSON array from the file
-    try:
-        with open(file_path, 'r') as file:
-            data = json.load(file)
-    except FileNotFoundError:
-            data = []
-    except json.JSONDecodeError:
-            data = []
-
-    # Step 2: Append the new JSON object to the array
-    data.append(new_data)
-
-    # Step 3: Write the updated JSON array back to the file
-    with open(file_path, 'w') as file:
-        json.dump(data, file, indent=4)
-
-print("New JSON object appended successfully.")
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--database", type=str, default="multiwoz_database")
@@ -149,6 +121,9 @@ if __name__ == "__main__":
     for it, turn in enumerate(data):
         if last_dial_id != turn["dialogue_id"]:
             last_dial_id = turn["dialogue_id"]
+            if dial>0:
+                with open(f"result_{dial + args.start_idx}_{dialog_id}.json","w") as f:
+                    json.dump(result[dialog_id],f)
             dial += 1
             progress_bar.update(1)
             tn = 0
@@ -260,6 +235,8 @@ if __name__ == "__main__":
         if dialog_id not in result.keys():
             result[dialog_id] = []     
         result[dialog_id].append({
+            "actual_output": state_output,
+            "customer_input":question,
             "turn_state": copy.deepcopy(slot_values),
             "total_state": copy.deepcopy(total_state),
             "pair_verbalized": copy.deepcopy(pair_verbalized),
@@ -275,8 +252,6 @@ if __name__ == "__main__":
         result[dialog_id][-1]["ACC"] = TURN_ACC
         print(f"overall_jga: {OVERALL_JGA}")
         print(f"TURN_ACC:{TURN_ACC}")
-        if prev_dial_id == dialog_id and dialog_id is not None:
-            append_to_json_file("result1.json",result[dialog_id])
         # report_table.add_data(
         #     f"{dialog_id}-{tn}", # id
         #     gt_domain, # gt_domain
@@ -290,8 +265,6 @@ if __name__ == "__main__":
         # )
 
         history += [f"Assistant: {gold_response}"] # assistnat response
-    if args.dials_total == 1:
-            append_to_json_file("result1.json",result[dialog_id])
     input_file_name = input_file_name.replace("/", "-")
     wandb.log({"examples": report_table})
     with open("final_result", "w") as file:
@@ -308,14 +281,14 @@ if __name__ == "__main__":
     TURN_ACC = turn_accuracy(result, gold_states)
     print(f"overall_jga: {OVERALL_JGA}")
     print(f"TURN_ACC:{TURN_ACC}")
-    pair_verbalized_ece, pair_verbalized_roc_auc, pair_confidence_ece, pair_confidence_roc_auc, pair_minicons_ece, pair_minicons_roc_auc = plot_distribution(result=result, gold_state=gold_states, gold_turn_state=gold_turn_states, n_bins=10, PLOT_RESULT_PATH=args.plot_result, input_file_name=input_file_name)
+    # pair_verbalized_ece, pair_verbalized_roc_auc, pair_confidence_ece, pair_confidence_roc_auc, pair_minicons_ece, pair_minicons_roc_auc = plot_distribution(result=result, gold_state=gold_states, gold_turn_state=gold_turn_states, n_bins=10, PLOT_RESULT_PATH=args.plot_result, input_file_name=input_file_name)
 
     wandb.log({"OVERALL_JGA": OVERALL_JGA})
     wandb.log({"TURN_ACC": TURN_ACC})
-    wandb.log({"pair_verbalized_ece": pair_verbalized_ece})
-    wandb.log({"pair_verbalized_roc_auc": pair_verbalized_roc_auc})
-    wandb.log({"pair_confidence_ece": pair_confidence_ece})
-    wandb.log({"pair_confidence_roc_auc": pair_confidence_roc_auc})
-    wandb.log({"pair_minicons_ece": pair_minicons_ece})
-    wandb.log({"pair_minicons_roc_auc": pair_minicons_roc_auc})
+    # wandb.log({"pair_verbalized_ece": pair_verbalized_ece})
+    # wandb.log({"pair_verbalized_roc_auc": pair_verbalized_roc_auc})
+    # wandb.log({"pair_confidence_ece": pair_confidence_ece})
+    # wandb.log({"pair_confidence_roc_auc": pair_confidence_roc_auc})
+    # wandb.log({"pair_minicons_ece": pair_minicons_ece})
+    # wandb.log({"pair_minicons_roc_auc": pair_minicons_roc_auc})
     

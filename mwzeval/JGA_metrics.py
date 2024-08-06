@@ -60,11 +60,11 @@ def overall_jga(input_data, reference_states):
     for dialog_id in input_data:
         for i, turn in enumerate(input_data[dialog_id]):
             print(f"{dialog_id}-{i}")
-            print(turn.keys())
+            # print(turn.keys())
             ref = flatten(reference_states[dialog_id][i])
             hyp = flatten(turn["total_state"])
-            # print(f"ref: {ref}")
-            # print(f"hyp: {hyp}")
+            print(f"ref: {ref}")
+            print(f"hyp: {hyp}")
             if is_matching(hyp, ref):
                 joint_match += 1
 
